@@ -6,7 +6,6 @@ using UnityEditor;
 public class projectile : MonoBehaviour
 {
     public GameObject player;
-    public GameObject pit;
     public Vector3 offscreen;
     public Vector3 mousepos;
     public Vector3 moveDir;
@@ -21,7 +20,6 @@ public class projectile : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        pit = GameObject.Find("Pit");
         offscreen = new Vector3 (-6f, 0f, 0f);
         transform.position = offscreen;
         movespeed = 0f;
@@ -58,28 +56,19 @@ public class projectile : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        /*
-        if (collision.gameObject.tag == "Pits") {
-	        Physics.IgnoreCollision(collision.collider, GetComponent<Collider>()); 
-		}
-        */
-        if(other == pit.GetComponent<Collider2D>())
-		{
-			transform.rotation = Quaternion.Euler(0f, 0f, 180);
+        if (other.gameObject.layer == 11) {
             overPit = true;
-		}
-        
-        else{
-		teleOffScreen();
         }
+        else{
+		    teleOffScreen();
+        }
+    
 	}
 
     void OnTriggerExit2D(Collider2D other){
-        if(other == pit.GetComponent<Collider2D>())
-		{
-			transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        if (other.gameObject.layer == 11) {
             overPit = false;
-		}
+        }
     }
 
     void teleOffScreen(){

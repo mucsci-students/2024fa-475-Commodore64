@@ -35,4 +35,5 @@ public class atkHitbox : MonoBehaviour
     void Update()
     {
     }
+
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyTeleport : MonoBehaviour
 {
     public GameObject player;
+    public Player ps;
     public GameObject telepoint;
     public Vector3 dest;
     public float timePassed;
@@ -16,12 +17,17 @@ public class EnemyTeleport : MonoBehaviour
         health = 200;
         dest = transform.position;
         player = GameObject.Find("Player");
+        ps = player.GetComponent<Player>();
         timePassed = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(health <= 0){
+            Destroy(gameObject);
+        }
+
         timePassed += Time.deltaTime;
         if (timePassed < 1){
             // do nothing
@@ -35,4 +41,18 @@ public class EnemyTeleport : MonoBehaviour
             dest = player.transform.position;
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.layer == 12) {
+            health -= ps.damage;
+        }
+	}
+
+    void OnTriggerStay2D(Collider2D other) {
+        if (other.gameObject.layer == 9 && !ps.invulne) {
+            ps.invulne = true;
+            ps.health -= System.Math.Max(80 - ps.armor, 0);
+        }
+
+	}
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyDash : MonoBehaviour
 {
     public GameObject player;
+    public Player ps;
     public Vector3 moveDir;
     public float timePassed;
     public float moveSpeed;
@@ -14,12 +15,17 @@ public class EnemyDash : MonoBehaviour
     {
         health = 50;
         player = GameObject.Find("Player");
+        ps = player.GetComponent<Player>();
         timePassed = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(health <= 0){
+            Destroy(gameObject);
+        }
+
         timePassed += Time.deltaTime;
         
         if (timePassed < 1){
@@ -31,7 +37,7 @@ public class EnemyDash : MonoBehaviour
             moveSpeed = 5;
         }
         else if (timePassed < 4){
-            moveSpeed = 0;
+            moveSpeed = -0.5;
         }
         else{
             timePassed = 0;
@@ -39,4 +45,17 @@ public class EnemyDash : MonoBehaviour
         transform.position += moveDir * moveSpeed * Time.deltaTime;
         
     }
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.layer == 12) {
+            health -= ps.damage;
+        }
+	}
+
+    void OnTriggerStay2D(Collider2D other) {
+        if (other.gameObject.layer == 9 && !ps.invulne) {
+            ps.invulne = true;
+            ps.health -= System.Math.Max(30 - ps.armor, 0);
+        }
+
+	}
 }

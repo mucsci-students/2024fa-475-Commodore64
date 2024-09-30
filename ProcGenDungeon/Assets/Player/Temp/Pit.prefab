@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4214069701784857423}
   - component: {fileID: 5667400383463655856}
   - component: {fileID: -8124628962690063826}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pit
-  m_TagString: Pits
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
