@@ -127,7 +127,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 48604758557151292, guid: 84715603c31db9142ab16648e89ada39, type: 3}
   m_PrefabInstance: {fileID: 1742708081}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
 --- !u!1 &112585278
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,8 +309,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115337891}
   m_CullTransparentMesh: 1
-=======
->>>>>>> b3cb4c9b9ccf3ff84d1ae79c85a796c2b0f485fb
 --- !u!1 &122135387
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,7 +791,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619430624}
   m_CullTransparentMesh: 1
-<<<<<<< HEAD
 --- !u!1 &634122654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1340,8 +1336,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 850156012}
   m_CullTransparentMesh: 1
-=======
->>>>>>> b3cb4c9b9ccf3ff84d1ae79c85a796c2b0f485fb
 --- !u!1 &977024614
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,7 +1374,7 @@ Transform:
   m_GameObject: {fileID: 977024614}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2407,7 +2401,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
-<<<<<<< HEAD
 --- !u!1 &999770081
 GameObject:
   m_ObjectHideFlags: 0
@@ -2622,8 +2615,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072860640}
   m_CullTransparentMesh: 1
-=======
->>>>>>> b3cb4c9b9ccf3ff84d1ae79c85a796c2b0f485fb
 --- !u!1 &1077780361
 GameObject:
   m_ObjectHideFlags: 0
@@ -2692,7 +2683,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!1 &1086872643
 GameObject:
   m_ObjectHideFlags: 0
@@ -2853,8 +2843,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087374372}
   m_CullTransparentMesh: 1
-=======
->>>>>>> b3cb4c9b9ccf3ff84d1ae79c85a796c2b0f485fb
 --- !u!1 &1087893406
 GameObject:
   m_ObjectHideFlags: 0
@@ -2983,7 +2971,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-<<<<<<< HEAD
 --- !u!1 &1096148946
 GameObject:
   m_ObjectHideFlags: 0
@@ -3142,8 +3129,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
-=======
->>>>>>> b3cb4c9b9ccf3ff84d1ae79c85a796c2b0f485fb
 --- !u!1 &1151432875
 GameObject:
   m_ObjectHideFlags: 0
@@ -3281,7 +3266,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-<<<<<<< HEAD
 --- !u!1 &1156525301
 GameObject:
   m_ObjectHideFlags: 0
@@ -3462,8 +3446,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1334710984}
   m_CullTransparentMesh: 1
-=======
->>>>>>> b3cb4c9b9ccf3ff84d1ae79c85a796c2b0f485fb
 --- !u!1 &1342108513
 GameObject:
   m_ObjectHideFlags: 0
@@ -7160,7 +7142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 48604758557151292, guid: 84715603c31db9142ab16648e89ada39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 48604758557151292, guid: 84715603c31db9142ab16648e89ada39, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7237,7 +7219,6 @@ PrefabInstance:
       addedObject: {fileID: 1087893407}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84715603c31db9142ab16648e89ada39, type: 3}
-<<<<<<< HEAD
 --- !u!1 &1748871228
 GameObject:
   m_ObjectHideFlags: 0
@@ -7777,8 +7758,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2088104977}
   m_CullTransparentMesh: 1
-=======
->>>>>>> b3cb4c9b9ccf3ff84d1ae79c85a796c2b0f485fb
 --- !u!1001 &847045528768467682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8329,7 +8308,12 @@ RectTransform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1043976071}
+  - {fileID: 1156525304}
   - {fileID: 977024616}
+  - {fileID: 2009651792}
+  - {fileID: 999770084}
+  - {fileID: 112585282}
   - {fileID: 122135391}
   - {fileID: 1077780364}
   - {fileID: 1594769759}
