@@ -7,19 +7,20 @@ public class atkHitbox : MonoBehaviour
 {
 
     public GameObject player;
+    public Player ps;
     public Vector3 mousepos;
     public Vector3 atkDir;
     public float atkAngle;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Hero");
+        ps = player.GetComponent<Player>();
+        mousepos = ps.setMouse;
+        
 
-        mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousepos.z = 0f;
-
-        atkDir = mousepos - player.transform.position;
-        atkDir = Vector3.Normalize(atkDir);
+      //  atkDir = mousepos - player.transform.position;
+        atkDir = Vector3.Normalize(mousepos);
         transform.position += atkDir;
         atkAngle = Vector3.Angle(new Vector3 (0f, 1f, 0f), atkDir);
 
@@ -35,5 +36,6 @@ public class atkHitbox : MonoBehaviour
     void Update()
     {
     }
+    
 
 }

@@ -16,13 +16,22 @@ public class Player : MonoBehaviour
   public int armor;
   Camera cam;
   public Interactable focus;
+  public Animator myAnimator;
+  public float curSpeed;
+  public float horoSpeed;
+  public float vertSpeed;
+  public Vector3 mousepos;
+  public Vector3 mouseDir;
+  public float mosX;
+  public float mosY;
+  public Vector3 setMouse;
 
   // Start is called before the first frame update
   void Start()
   {
-
+    myAnimator = GetComponent<Animator>();
     health = 100;
-    transform.position = new Vector3(5f, 5f, 0f);
+    transform.position = new Vector3(-6f, 0f, 0f);
     moveSpeed = 2;
     timePassed = 0;
     moveDirection = new Vector3(0f, -1f, 0f);
@@ -30,21 +39,47 @@ public class Player : MonoBehaviour
     damage = 20;
     armor = 10;
     cam = Camera.main;
+    curSpeed = 0;
   }
 
   void Update()
   {
+    mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    mousepos.z = 0f;
+    mouseDir = mousepos - transform.position;
+
+
     if (health <= 0)
     {
       Destroy(gameObject);
     }
 
-    moveDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f);
-    transform.position += moveDirection * moveSpeed * Time.deltaTime;
+    horoSpeed = Input.GetAxis("Horizontal");
+    vertSpeed = Input.GetAxis("Vertical");
+
+    moveDirection = new Vector3(horoSpeed, vertSpeed, 0f);
+    transform.position += Vector3.Normalize(moveDirection) * moveSpeed * Time.deltaTime;
+
+
+    curSpeed = System.Math.Abs(horoSpeed) + System.Math.Abs(vertSpeed);
+    if (System.Math.Abs(horoSpeed) < System.Math.Abs(vertSpeed)){
+      horoSpeed = 0;
+    }
+    else{
+      vertSpeed = 0;
+    }
+
+    if(myAnimator != null){
+      myAnimator.SetFloat("Run", curSpeed);
+      myAnimator.SetFloat("hSpeed", horoSpeed);
+      myAnimator.SetFloat("vSpeed", vertSpeed);
+    }
 
     if (Input.GetMouseButtonDown(0) && cd)
     {
-      Instantiate(attackHitbox, transform.position, Quaternion.identity);
+      myAnimator.SetTrigger("TriAtk");
+      StartCoroutine(waiterAnimate());
+      StartCoroutine(waiterAtk());
       StartCoroutine(waiter());
     }
 
@@ -103,5 +138,39 @@ public class Player : MonoBehaviour
     cd = false;
     yield return new WaitForSeconds(1f);
     cd = true;
+  }
+  IEnumerator waiterAnimate()
+  {
+    myAnimator.SetBool("Atk", true);
+    yield return new WaitForSeconds(1.02f);
+    myAnimator.SetBool("Atk", false);
+  }
+  IEnumerator waiterAtk()
+  {
+    setMouse = mouseDir;
+    mosX = setMouse.x;
+    mosY = setMouse.y;
+    if (System.Math.Abs(mosX) > System.Math.Abs(mosY)){
+      if (mosX > 0){
+        myAnimator.SetBool("mosRight", true);
+      }
+      else{
+        myAnimator.SetBool("mosLeft", true);
+      }
+    }
+    else{
+      if (mosY > 0){
+        myAnimator.SetBool("mosUp", true);
+      }
+      else{
+        myAnimator.SetBool("mosDown", true);
+      }
+    }
+    yield return new WaitForSeconds(0.5f);
+    Instantiate(attackHitbox, transform.position, Quaternion.identity);
+      myAnimator.SetBool("mosUp", false);
+      myAnimator.SetBool("mosDown", false);
+      myAnimator.SetBool("mosLeft", false);
+      myAnimator.SetBool("mosRight", false);
   }
 }

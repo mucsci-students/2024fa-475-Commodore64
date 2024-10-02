@@ -19,7 +19,7 @@ public class projectile : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Hero");
         offscreen = new Vector3 (-6f, 0f, 0f);
         transform.position = offscreen;
         movespeed = 0f;
