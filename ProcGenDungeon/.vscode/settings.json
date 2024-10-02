@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ProcGenDungeon.sln"
+    "dotnet.defaultSolution": "ProcGenDungeon.sln",
+    "FSharp.suggestGitignore": false
 }
