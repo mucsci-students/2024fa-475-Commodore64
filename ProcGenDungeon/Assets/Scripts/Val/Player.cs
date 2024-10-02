@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
   {
     myAnimator = GetComponent<Animator>();
     health = 100;
-    transform.position = new Vector3(5f, 5f, 0f);
+    transform.position = new Vector3(-6f, 0f, 0f);
     moveSpeed = 2;
     timePassed = 0;
     moveDirection = new Vector3(0f, -1f, 0f);
