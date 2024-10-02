@@ -47,24 +47,7 @@ public class Player : MonoBehaviour
     mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     mousepos.z = 0f;
     mouseDir = mousepos - transform.position;
-    mosX = mouseDir.x;
-    mosY = mouseDir.y;
-    if (System.Math.Abs(mosX) > System.Math.Abs(mosY)){
-      if (mosX > 0){
-        myAnimator.SetBool("mosRight", true);
-      }
-      else{
-        myAnimator.SetBool("mosLeft", true);
-      }
-    }
-    else{
-      if (mosY > 0){
-        myAnimator.SetBool("mosUp", true);
-      }
-      else{
-        myAnimator.SetBool("mosDown", true);
-      }
-    }
+
 
     if (health <= 0)
     {
@@ -75,7 +58,7 @@ public class Player : MonoBehaviour
     vertSpeed = Input.GetAxis("Vertical");
 
     moveDirection = new Vector3(horoSpeed, vertSpeed, 0f);
-    transform.position += moveDirection * moveSpeed * Time.deltaTime;
+    transform.position += Vector3.Normalize(moveDirection) * moveSpeed * Time.deltaTime;
 
 
     curSpeed = System.Math.Abs(horoSpeed) + System.Math.Abs(vertSpeed);
@@ -164,7 +147,25 @@ public class Player : MonoBehaviour
   }
   IEnumerator waiterAtk()
   {
-    setMouse = mousepos;
+    setMouse = mouseDir;
+    mosX = setMouse.x;
+    mosY = setMouse.y;
+    if (System.Math.Abs(mosX) > System.Math.Abs(mosY)){
+      if (mosX > 0){
+        myAnimator.SetBool("mosRight", true);
+      }
+      else{
+        myAnimator.SetBool("mosLeft", true);
+      }
+    }
+    else{
+      if (mosY > 0){
+        myAnimator.SetBool("mosUp", true);
+      }
+      else{
+        myAnimator.SetBool("mosDown", true);
+      }
+    }
     yield return new WaitForSeconds(0.5f);
     Instantiate(attackHitbox, transform.position, Quaternion.identity);
       myAnimator.SetBool("mosUp", false);
