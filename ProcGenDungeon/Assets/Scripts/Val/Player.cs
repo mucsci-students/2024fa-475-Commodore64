@@ -136,7 +136,7 @@ public class Player : MonoBehaviour
   IEnumerator waiter()
   {
     cd = false;
-    yield return new WaitForSeconds(3f);
+    yield return new WaitForSeconds(1f);
     cd = true;
   }
   IEnumerator waiterAnimate()
