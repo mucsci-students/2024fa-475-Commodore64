@@ -8,7 +8,6 @@ public class projectile : MonoBehaviour
     public GameObject player;
     public Vector3 offscreen;
     public Vector3 mousepos;
-    public Vector3 moveDir;
     public Vector3 setDir;
     public Vector3 deltaPos;
     public float movespeed;
@@ -32,7 +31,6 @@ public class projectile : MonoBehaviour
     {
         mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousepos.z = 0f;
-        moveDir =  mousepos - player.transform.position;
 
         deltaPos = setDir * movespeed * Time.deltaTime;
 
@@ -46,10 +44,10 @@ public class projectile : MonoBehaviour
                 teleOffScreen();
             }
             else{
-                setDir = moveDir;
+                movespeed = 1f;
+                setDir = Vector3.Normalize(mousepos);
                 isWarp = true;
                 transform.position = player.transform.position;
-                movespeed = 1f/moveDir.magnitude;
             }
         }
 

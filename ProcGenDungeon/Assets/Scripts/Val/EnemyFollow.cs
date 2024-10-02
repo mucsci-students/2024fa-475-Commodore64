@@ -18,7 +18,7 @@ public class EnemyFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Hero");
         ps = player.GetComponent<Player>();
 
         health = 100;

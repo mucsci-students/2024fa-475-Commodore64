@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
   public float horoSpeed;
   public float vertSpeed;
   public Vector3 mousepos;
-  public Vector3 mouseDir;
   public float mosX;
   public float mosY;
   public Vector3 setMouse;
@@ -46,7 +45,6 @@ public class Player : MonoBehaviour
   {
     mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     mousepos.z = 0f;
-    mouseDir = mousepos - transform.position;
 
 
     if (health <= 0)
@@ -147,7 +145,7 @@ public class Player : MonoBehaviour
   }
   IEnumerator waiterAtk()
   {
-    setMouse = mouseDir;
+    setMouse = mousepos;
     mosX = setMouse.x;
     mosY = setMouse.y;
     if (System.Math.Abs(mosX) > System.Math.Abs(mosY)){
