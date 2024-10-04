@@ -11,14 +11,15 @@ public class RandomDungeonGeneratorEditor : Editor
     private void Awake()
     {
         generator = (AbstractDungeonGenerator)target;
+        generator.GenerateDungeon();
     }
 
-    public override void OnInspectorGUI()
+    /*public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
         if(GUILayout.Button("Create Dungeon"))
         {
             generator.GenerateDungeon();
         }
-    }
+    }*/
 }

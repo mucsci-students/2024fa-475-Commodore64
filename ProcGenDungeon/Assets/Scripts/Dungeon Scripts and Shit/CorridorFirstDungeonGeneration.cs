@@ -16,7 +16,7 @@ public class CorridorFirstDungeonGeneration : SimpleRandomWalkDungeonGenerator
         CorridorFirstGeneration();
      }
 
-     private void CorridorFirstGeneration() {
+     protected void CorridorFirstGeneration() {
         HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
         HashSet<Vector2Int> potentialRoomPositions = new HashSet<Vector2Int>();
 
