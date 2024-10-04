@@ -31,6 +31,7 @@ public class projectile : MonoBehaviour
     {
         mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousepos.z = 0f;
+        mousepos = mousepos - player.transform.position;
 
         deltaPos = setDir * movespeed * Time.deltaTime;
 

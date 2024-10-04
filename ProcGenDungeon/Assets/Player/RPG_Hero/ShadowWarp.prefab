@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 3591191053983365741}
   - component: {fileID: 8509968645059850007}
   - component: {fileID: 1737451447732012510}
-  m_Layer: 0
-  m_Name: idle_dark_0
+  m_Layer: 8
+  m_Name: ShadowWarp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
