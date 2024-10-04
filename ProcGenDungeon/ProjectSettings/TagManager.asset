@@ -54,3 +54,9 @@ TagManager:
   - name: Characters
     uniqueID: 2063255
     locked: 0
+  - name: UI Layer 1
+    uniqueID: 4049177365
+    locked: 0
+  - name: UI Layer 2
+    uniqueID: 3338243651
+    locked: 0

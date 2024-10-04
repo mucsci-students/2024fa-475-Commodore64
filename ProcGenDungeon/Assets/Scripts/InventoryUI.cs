@@ -8,6 +8,7 @@ public class InventoryUI : MonoBehaviour
 {
 
     public GameObject inventoryUI;  // The entire UI
+    public GameObject equipmentUI;
     public Transform itemsParent;   // The parent object of all the items
 
     Inventory inventory;    // Our current inventory
@@ -16,6 +17,7 @@ public class InventoryUI : MonoBehaviour
     {
         inventory = Inventory.instance;
         inventoryUI.SetActive(false); // Click F to bring up inventory (can change)
+        equipmentUI.SetActive(false);
     }
 
     // Check to see if we should open/close the inventory
@@ -24,6 +26,7 @@ public class InventoryUI : MonoBehaviour
         if (Input.GetButtonDown("Inventory"))
         {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
+            equipmentUI.SetActive(!equipmentUI.activeSelf);
             UpdateUI();
         }
     }
