@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
   {
     mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     mousepos.z = 0f;
-
+    mousepos = mousepos - transform.position;
 
     if (health <= 0)
     {
@@ -133,7 +133,7 @@ public class Player : MonoBehaviour
     if (invulne)
     {
       timePassed += Time.deltaTime;
-      if (timePassed > 3)
+      if (timePassed > 1)
       {
         timePassed = 0;
         invulne = false;
@@ -145,7 +145,7 @@ public class Player : MonoBehaviour
   IEnumerator waiter()
   {
     cd = false;
-    yield return new WaitForSeconds(1f);
+    yield return new WaitForSeconds(3f);
     cd = true;
   }
   IEnumerator waiterAnimate()
@@ -156,7 +156,6 @@ public class Player : MonoBehaviour
   }
   IEnumerator waiterAtk()
   {
-    setMouse = mousepos;
     mosX = setMouse.x;
     mosY = setMouse.y;
     if (System.Math.Abs(mosX) > System.Math.Abs(mosY))

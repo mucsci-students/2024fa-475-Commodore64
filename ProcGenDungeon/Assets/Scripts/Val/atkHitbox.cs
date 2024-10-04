@@ -18,8 +18,6 @@ public class atkHitbox : MonoBehaviour
         ps = player.GetComponent<Player>();
         mousepos = ps.setMouse;
         
-
-      //  atkDir = mousepos - player.transform.position;
         atkDir = Vector3.Normalize(mousepos);
         transform.position += atkDir;
         atkAngle = Vector3.Angle(new Vector3 (0f, 1f, 0f), atkDir);
