@@ -10,6 +10,7 @@ public class projectile : MonoBehaviour
     public Vector3 mousepos;
     public Vector3 setDir;
     public Vector3 deltaPos;
+    public Vector3 scaling;
     public float movespeed;
     public bool isWarp;
     public bool overPit;
@@ -19,7 +20,8 @@ public class projectile : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Hero");
-        offscreen = new Vector3 (-6f, 0f, 0f);
+        offscreen = new Vector3 (0f, 0f, 0f);
+        scaling = new Vector3 (50f, 50f, 50f);
         transform.position = offscreen;
         movespeed = 0f;
         isWarp = false;
@@ -49,6 +51,7 @@ public class projectile : MonoBehaviour
                 setDir = Vector3.Normalize(mousepos);
                 isWarp = true;
                 transform.position = player.transform.position;
+                transform.localScale = scaling;
             }
         }
 
@@ -74,6 +77,7 @@ public class projectile : MonoBehaviour
         transform.position = offscreen;
         movespeed = 0;
         isWarp = false;
+        transform.localScale = offscreen;
     }
 
     

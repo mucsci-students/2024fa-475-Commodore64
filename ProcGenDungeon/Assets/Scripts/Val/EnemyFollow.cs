@@ -14,6 +14,8 @@ public class EnemyFollow : MonoBehaviour
     public bool agro;
     public int health;
     public bool hit;
+    public Vector3 right;
+    public Vector3 left;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,8 @@ public class EnemyFollow : MonoBehaviour
         player = GameObject.Find("Hero");
         ps = player.GetComponent<Player>();
 
+        right = new Vector3 (10f, 10f, 0f);
+        left = new Vector3 (-10f, 10f, 0f);
         health = 100;
         timePassed = 0;
         moveSpeed = 1.5f;
@@ -33,6 +37,12 @@ public class EnemyFollow : MonoBehaviour
     void Update()
     {
         playerDir = player.transform.position - transform.position; 
+        if (playerDir.x > 0){
+            transform.localScale = right;
+        }
+        else{
+            transform.localScale = left;
+        }
 
         if(health <= 0){
             Destroy(gameObject);
@@ -48,7 +58,7 @@ public class EnemyFollow : MonoBehaviour
             if(timePassed < 3f){
                 moveDir = Vector3.zero;
             }
-            else if (timePassed < 4){
+            else if (timePassed < 5f){
                 moveDir = randDir;
             }
             else{

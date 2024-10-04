@@ -9,16 +9,23 @@ public class EnemyTeleport : MonoBehaviour
     public GameObject telepoint;
     public Vector3 dest;
     public float timePassed;
-    public int health; 
+    public int health;
+    public Vector3 right;
+    public Vector3 left;
+    public Vector3 playerDir;
+    public bool agro;
 
     // Start is called before the first frame update
     void Start()
     {
         health = 200;
         dest = transform.position;
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Hero");
         ps = player.GetComponent<Player>();
         timePassed = 0;
+        right = new Vector3 (9f, 9f, 0f);
+        left = new Vector3 (-9f, 9f, 0f);
+        agro = false;
     }
 
     // Update is called once per frame
@@ -27,18 +34,33 @@ public class EnemyTeleport : MonoBehaviour
         if(health <= 0){
             Destroy(gameObject);
         }
+        playerDir = player.transform.position - transform.position;
+        if(agro){
+            if (playerDir.x > 0){
+                transform.localScale = right;
+            }
+            else{
+                transform.localScale = left;
+            }
 
-        timePassed += Time.deltaTime;
-        if (timePassed < 1){
-            // do nothing
-        }
-        else if (timePassed < 2){
-            transform.position = dest;
+            timePassed += Time.deltaTime;
+            if (timePassed < 1){
+                // do nothing
+            }
+            else if (timePassed < 2){
+                transform.position = dest;
+            }
+            else{
+                timePassed = 0;
+                Instantiate(telepoint, player.transform.position, Quaternion.identity);
+                dest = player.transform.position;
+            }
         }
         else{
-            timePassed = 0;
-            Instantiate(telepoint, player.transform.position, Quaternion.identity);
-            dest = player.transform.position;
+            if(playerDir.magnitude < 8){
+                agro = true;
+                timePassed = 0;
+            }
         }
     }
 
