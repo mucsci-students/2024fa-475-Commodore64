@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 public class Player : MonoBehaviour
 {
@@ -60,35 +61,30 @@ public class Player : MonoBehaviour
 
 
     curSpeed = System.Math.Abs(horoSpeed) + System.Math.Abs(vertSpeed);
-    if (System.Math.Abs(horoSpeed) < System.Math.Abs(vertSpeed)){
+    if (System.Math.Abs(horoSpeed) < System.Math.Abs(vertSpeed))
+    {
       horoSpeed = 0;
     }
-    else{
+    else
+    {
       vertSpeed = 0;
     }
 
-    if(myAnimator != null){
+    if (myAnimator != null)
+    {
       myAnimator.SetFloat("Run", curSpeed);
       myAnimator.SetFloat("hSpeed", horoSpeed);
       myAnimator.SetFloat("vSpeed", vertSpeed);
     }
 
+    // left mouse button
     if (Input.GetMouseButtonDown(0) && cd)
     {
-      setMouse = mousepos;
-      myAnimator.SetTrigger("TriAtk");
-      StartCoroutine(waiterAnimate());
-      StartCoroutine(waiterAtk());
-      StartCoroutine(waiter());
-    }
+      RaycastHit2D hit = Physics2D.Raycast(Input.mousePosition, -Vector2.up);
 
-    if (Input.GetMouseButtonDown(1))
-    {
-      Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-      RaycastHit hit;
-
-      if (Physics.Raycast(ray, out hit))
+      if (hit.collider != null)
       {
+        Debug.Log("PASS 1");
         Interactable interactable = hit.collider.GetComponent<Interactable>();
         if (interactable != null)
         {
@@ -99,6 +95,20 @@ public class Player : MonoBehaviour
           RemoveFocus();
         }
       }
+      else
+      {
+        Debug.Log("FAIL 1");
+        myAnimator.SetTrigger("TriAtk");
+        StartCoroutine(waiterAnimate());
+        StartCoroutine(waiterAtk());
+        StartCoroutine(waiter());
+      }
+    }
+
+    // right mouse button
+    if (Input.GetMouseButtonDown(1))
+    {
+
     }
 
     void SetFocus(Interactable newFocus)
@@ -148,27 +158,33 @@ public class Player : MonoBehaviour
   {
     mosX = setMouse.x;
     mosY = setMouse.y;
-    if (System.Math.Abs(mosX) > System.Math.Abs(mosY)){
-      if (mosX > 0){
+    if (System.Math.Abs(mosX) > System.Math.Abs(mosY))
+    {
+      if (mosX > 0)
+      {
         myAnimator.SetBool("mosRight", true);
       }
-      else{
+      else
+      {
         myAnimator.SetBool("mosLeft", true);
       }
     }
-    else{
-      if (mosY > 0){
+    else
+    {
+      if (mosY > 0)
+      {
         myAnimator.SetBool("mosUp", true);
       }
-      else{
+      else
+      {
         myAnimator.SetBool("mosDown", true);
       }
     }
     yield return new WaitForSeconds(0.5f);
     Instantiate(attackHitbox, transform.position, Quaternion.identity);
-      myAnimator.SetBool("mosUp", false);
-      myAnimator.SetBool("mosDown", false);
-      myAnimator.SetBool("mosLeft", false);
-      myAnimator.SetBool("mosRight", false);
+    myAnimator.SetBool("mosUp", false);
+    myAnimator.SetBool("mosDown", false);
+    myAnimator.SetBool("mosLeft", false);
+    myAnimator.SetBool("mosRight", false);
   }
 }
