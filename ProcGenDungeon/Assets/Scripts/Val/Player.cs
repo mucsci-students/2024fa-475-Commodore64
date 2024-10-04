@@ -156,6 +156,7 @@ public class Player : MonoBehaviour
   }
   IEnumerator waiterAtk()
   {
+    setMouse = mousepos;
     mosX = setMouse.x;
     mosY = setMouse.y;
     if (System.Math.Abs(mosX) > System.Math.Abs(mosY))
