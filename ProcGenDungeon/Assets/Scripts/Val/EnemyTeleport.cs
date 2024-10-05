@@ -34,6 +34,7 @@ public class EnemyTeleport : MonoBehaviour
         if(health <= 0){
             Destroy(gameObject);
         }
+        transform.GetChild(0).GetComponent<zomHealth>().hb = health;
         playerDir = player.transform.position - transform.position;
         if(agro){
             if (playerDir.x > 0){

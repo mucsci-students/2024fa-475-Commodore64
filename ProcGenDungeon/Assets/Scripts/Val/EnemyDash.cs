@@ -35,6 +35,7 @@ public class EnemyDash : MonoBehaviour
         if(health <= 0){
             Destroy(gameObject);
         }
+        transform.GetChild(0).GetComponent<zomHealth>().hb = health;
         moveDir = player.transform.position - transform.position;
         if (agro){
             timePassed += Time.deltaTime;

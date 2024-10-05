@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
   public float mosX;
   public float mosY;
   public Vector3 setMouse;
+  public bool isDead;
 
   // Start is called before the first frame update
   void Start()
@@ -40,106 +41,110 @@ public class Player : MonoBehaviour
     armor = 10;
     cam = Camera.main;
     curSpeed = 0;
+    isDead = false;
   }
 
   void Update()
   {
-    mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    mousepos.z = 0f;
-    mousepos = mousepos - transform.position;
-
-    if (health <= 0)
+    if (health <= 0 && !isDead)
     {
-      Destroy(gameObject);
+      StartCoroutine(deathTime());
     }
-
-    horoSpeed = Input.GetAxis("Horizontal");
-    vertSpeed = Input.GetAxis("Vertical");
-
-    moveDirection = new Vector3(horoSpeed, vertSpeed, 0f);
-    transform.position += Vector3.Normalize(moveDirection) * moveSpeed * Time.deltaTime;
-
-
-    curSpeed = System.Math.Abs(horoSpeed) + System.Math.Abs(vertSpeed);
-    if (System.Math.Abs(horoSpeed) < System.Math.Abs(vertSpeed))
-    {
-      horoSpeed = 0;
+    else if (isDead){
+      //do nothing
     }
-    else
-    {
-      vertSpeed = 0;
-    }
+    else{
+      mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+      mousepos.z = 0f;
+      mousepos = mousepos - transform.position;
 
-    if (myAnimator != null)
-    {
-      myAnimator.SetFloat("Run", curSpeed);
-      myAnimator.SetFloat("hSpeed", horoSpeed);
-      myAnimator.SetFloat("vSpeed", vertSpeed);
-    }
+      horoSpeed = Input.GetAxis("Horizontal");
+      vertSpeed = Input.GetAxis("Vertical");
 
-    // left mouse button
-    if (Input.GetMouseButtonDown(0) && cd)
-    {
-      RaycastHit2D hit = Physics2D.Raycast(Input.mousePosition, -Vector2.up);
+      moveDirection = new Vector3(horoSpeed, vertSpeed, 0f);
+      transform.position += Vector3.Normalize(moveDirection) * moveSpeed * Time.deltaTime;
 
-      if (hit.collider != null)
+
+      curSpeed = System.Math.Abs(horoSpeed) + System.Math.Abs(vertSpeed);
+      if (System.Math.Abs(horoSpeed) < System.Math.Abs(vertSpeed))
       {
-        Debug.Log("PASS 1");
-        Interactable interactable = hit.collider.GetComponent<Interactable>();
-        if (interactable != null)
-        {
-          SetFocus(interactable);
-        }
-        else
-        {
-          RemoveFocus();
-        }
+        horoSpeed = 0;
       }
       else
       {
-        Debug.Log("FAIL 1");
-        myAnimator.SetTrigger("TriAtk");
-        StartCoroutine(waiterAnimate());
-        StartCoroutine(waiterAtk());
-        StartCoroutine(waiter());
+        vertSpeed = 0;
       }
-    }
 
-    // right mouse button
-    if (Input.GetMouseButtonDown(1))
-    {
+      if (myAnimator != null)
+      {
+        myAnimator.SetFloat("Run", curSpeed);
+        myAnimator.SetFloat("hSpeed", horoSpeed);
+        myAnimator.SetFloat("vSpeed", vertSpeed);
+      }
 
-    }
+      // left mouse button
+      if (Input.GetMouseButtonDown(0) && cd)
+      {
+        RaycastHit2D hit = Physics2D.Raycast(Input.mousePosition, -Vector2.up);
 
-    void SetFocus(Interactable newFocus)
-    {
-      if (newFocus != focus)
+        if (hit.collider != null)
+        {
+          Debug.Log("PASS 1");
+          Interactable interactable = hit.collider.GetComponent<Interactable>();
+          if (interactable != null)
+          {
+            SetFocus(interactable);
+          }
+          else
+          {
+            RemoveFocus();
+          }
+        }
+        else
+        {
+          Debug.Log("FAIL 1");
+          myAnimator.SetTrigger("TriAtk");
+          StartCoroutine(waiterAnimate());
+          StartCoroutine(waiterAtk());
+          StartCoroutine(waiter());
+        }
+      }
+
+      // right mouse button
+      if (Input.GetMouseButtonDown(1))
+      {
+
+      }
+
+      void SetFocus(Interactable newFocus)
+      {
+        if (newFocus != focus)
+        {
+          if (focus != null)
+            focus.OnDefocused();
+          focus = newFocus;
+        }
+
+        newFocus.OnFocused(transform);
+      }
+
+      void RemoveFocus()
       {
         if (focus != null)
           focus.OnDefocused();
-        focus = newFocus;
+        focus = null;
       }
 
-      newFocus.OnFocused(transform);
-    }
-
-    void RemoveFocus()
-    {
-      if (focus != null)
-        focus.OnDefocused();
-      focus = null;
-    }
-
-    if (invulne)
-    {
-      timePassed += Time.deltaTime;
-      if (timePassed > 1)
+      if (invulne)
       {
-        timePassed = 0;
-        invulne = false;
+        timePassed += Time.deltaTime;
+        if (timePassed > 1)
+        {
+          timePassed = 0;
+          invulne = false;
+        }
       }
     }
-
   }
 
   IEnumerator waiter()
@@ -147,6 +152,13 @@ public class Player : MonoBehaviour
     cd = false;
     yield return new WaitForSeconds(3f);
     cd = true;
+  }
+  IEnumerator deathTime()
+  {
+    isDead = true;
+    myAnimator.SetBool("dead", true);
+    yield return new WaitForSeconds(3f);
+    myAnimator.gameObject.GetComponent<Animator>().enabled = false;
   }
   IEnumerator waiterAnimate()
   {

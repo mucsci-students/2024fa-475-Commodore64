@@ -47,6 +47,7 @@ public class EnemyFollow : MonoBehaviour
         if(health <= 0){
             Destroy(gameObject);
         }
+        transform.GetChild(0).GetComponent<zomHealth>().hb = health;
 
         if(!agro){
             if (playerDir.magnitude < 5){
