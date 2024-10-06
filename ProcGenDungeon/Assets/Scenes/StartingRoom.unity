@@ -334,7 +334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 343056513}
   - component: {fileID: 343056512}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: ChasmCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,6 +460,10 @@ PrefabInstance:
     - target: {fileID: 3092723867727898576, guid: 38abf800093a04546a269b4ec0d8b313, type: 3}
       propertyPath: m_Name
       value: ShadowWarp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591191053983365741, guid: 38abf800093a04546a269b4ec0d8b313, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 6464014704629776993, guid: 38abf800093a04546a269b4ec0d8b313, type: 3}
       propertyPath: m_SortingLayer
@@ -5414,8 +5418,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Find a way out
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a70efcce610628a44aefb8fb4db53482, type: 2}
+  m_sharedMaterial: {fileID: 8761451073445491773, guid: a70efcce610628a44aefb8fb4db53482, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5439,8 +5443,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 23.38
+  m_fontSizeBase: 23.38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
