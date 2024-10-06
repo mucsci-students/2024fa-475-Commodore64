@@ -12,7 +12,9 @@ public class SceneTrigger : MonoBehaviour
     public float transitionTime = 1f;
 
     void OnTriggerEnter2D (Collider2D col) {
-        StartCoroutine(LoadLevel(2));
+        if (col.CompareTag("Player")) {
+            StartCoroutine(LoadLevel(2));
+        }
     }
 
     IEnumerator LoadLevel (int levelIndex) {

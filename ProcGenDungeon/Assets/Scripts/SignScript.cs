@@ -13,7 +13,7 @@ public class SignScript : MonoBehaviour
     [SerializeField]
     public string dialogue;
     [SerializeField]
-    public bool playerInRange;
+    public bool playerInRange = false;
 
     // Start is called before the first frame update
     void Start()
@@ -40,13 +40,11 @@ public class SignScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2d(Collider2D col) {
+    private void OnTriggerExit2D(Collider2D col) {
         if(col.CompareTag("Player")) {
             playerInRange = false;
             dialogueBox.SetActive(false);
         }
     }
-    
-
 
 }
