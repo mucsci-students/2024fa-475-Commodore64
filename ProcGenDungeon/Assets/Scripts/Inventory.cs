@@ -23,6 +23,7 @@ public class Inventory
             maxAllowed = 99;
         }
 
+        // Checks if inventory slot is full
         public bool CanAddItem()
         {
             if (count < maxAllowed)
@@ -38,7 +39,7 @@ public class Inventory
         {
             this.type = item.type;
             this.icon = item.icon;
-            count++;
+            count = (int)ItemType.WEAPON; // temporary to keep some count for the first item
             item.enabled = true;
         }
 

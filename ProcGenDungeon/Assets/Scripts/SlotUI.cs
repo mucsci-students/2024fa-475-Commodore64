@@ -9,6 +9,7 @@ public class SlotUI : MonoBehaviour
     public TextMeshProUGUI quantityText;
     public Button removeButton;
 
+    // Putting Item in corresponding slot
     public void SetItem(Inventory.InventorySlot slot)
     {
         if (slot != null)
@@ -16,7 +17,7 @@ public class SlotUI : MonoBehaviour
             itemIcon.sprite = slot.icon;
             itemIcon.color = new Color(1, 1, 1, 1);
             itemIcon.enabled = true;
-            removeButton.interactable = true;
+            //removeButton.interactable = true;
             if (slot.count == 0)
             {
                 quantityText.text = "";
@@ -28,6 +29,7 @@ public class SlotUI : MonoBehaviour
         }
     }
 
+    // Empty Slots setting
     public void SetEmpty()
     {
         itemIcon.enabled = false;

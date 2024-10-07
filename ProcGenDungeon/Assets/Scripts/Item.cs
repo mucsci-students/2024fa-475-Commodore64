@@ -9,11 +9,12 @@ public class Item : MonoBehaviour
 
         if (player.tag == "Player" || !collision.GetComponent<projectile>().isWarp || collision.GetComponent<ItemType>() != ItemType.NONE)
         {
-            player.inventory.Add(this);
-            Destroy(this.gameObject);
+            player.inventory.Add(this); // Add object to inventory
+            Destroy(this.gameObject); // Delete from Scene
         }
         else
         {
+            // If it is a projectile, just destroy it and do not add to inventory
             Destroy(collision.GetComponent<projectile>());
         }
     }

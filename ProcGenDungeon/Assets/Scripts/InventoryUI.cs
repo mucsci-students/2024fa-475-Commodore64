@@ -13,22 +13,22 @@ public class InventoryUI : MonoBehaviour
 
     void Start()
     {
-        inventoryUI.SetActive(false); // Click F to bring up inventory (can change)
+        inventoryUI.SetActive(false); // Click F to bring up inventory
         equipmentUI.SetActive(false);
     }
 
-    // Check to see if we should open/close the inventory
     void Update()
     {
-        if (Input.GetButtonDown("Inventory"))
+        if (Input.GetButtonDown("Inventory")) // When F is pressed
         {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
             equipmentUI.SetActive(!equipmentUI.activeSelf);
-            Setup();
         }
+        Refresh();
     }
 
-    void Setup()
+    // Updates the Slots UI in real time
+    void Refresh()
     {
         if (slots.Count == player.inventory.slots.Count)
         {

@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
 
   private void Awake()
   {
+    // Initializes Inventory to 18 slots
     inventory = new Inventory(18);
   }
 
