@@ -1,56 +1,89 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour
+[System.Serializable]
+public class Inventory
 {
-
-    #region Singleton
-
-    public static Inventory instance;
-
-    void Awake()
+    [System.Serializable]
+    public class InventorySlot
     {
-        instance = this;
-    }
+        public ItemType type;
+        public int count;
+        public int maxAllowed;
+        public Sprite icon;
 
-    #endregion
-
-    public delegate void OnItemChanged();
-    public OnItemChanged onItemChangedCallback;
-
-    public int space = 10;  // Amount of item spaces
-
-    // Our current list of items in the inventory
-    public List<Item> items = new List<Item>();
-
-    // Add a new item if enough room
-    public void Add(Item item)
-    {
-        if (item.showInInventory)
+        public InventorySlot()
         {
-            if (items.Count >= space)
+            type = ItemType.NONE;
+            count = 0;
+            maxAllowed = 99;
+        }
+
+        public bool CanAddItem()
+        {
+            if (count < maxAllowed)
             {
-                Debug.Log("Not enough room.");
-                return;
+                return true;
             }
 
-            items.Add(item);
+            return false;
 
-            if (onItemChangedCallback != null)
-                onItemChangedCallback.Invoke();
+        }
+
+        public void AddItem(Item item)
+        {
+            this.type = item.type;
+            this.icon = item.icon;
+            count++;
+            item.enabled = true;
+        }
+
+        public void ClearSlot()
+        {
+            // item = null;
+            // icon.sprite = null;
+            // icon.enabled = false;
+            // removeButton.interactable = false;
+        }
+
+        public void OnRemoveButton()
+        {
+            //Inventory.instance.Remove(item);
         }
     }
 
-    // Remove an item
-    public void Remove(Item item)
+    public List<InventorySlot> slots = new List<InventorySlot>();
+    public Inventory(int numSlots)
     {
-        items.Remove(item);
-
-        if (onItemChangedCallback != null)
+        for (int i = 0; i < numSlots; i++)
         {
-            Debug.Log("calling onItemChangedCallback.");
-            onItemChangedCallback.Invoke();
+            InventorySlot slot = new InventorySlot();
+            slots.Add(slot);
+        }
+    }
+
+    public void Add(Item newItem)
+    {
+        foreach (InventorySlot slot in slots)
+        {
+            if (slot.type == newItem.type && slot.CanAddItem())
+            {
+                slot.AddItem(newItem);
+                return;
+            }
+        }
+
+        foreach (InventorySlot slot in slots)
+        {
+            if (slot.type == ItemType.NONE)
+            {
+                slot.AddItem(newItem);
+                return;
+            }
         }
     }
 

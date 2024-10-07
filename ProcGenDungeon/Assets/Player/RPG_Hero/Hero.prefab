@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 7658467375467217040}
   - component: {fileID: 3088394445578242002}
   - component: {fileID: 3902289753278234958}
-  - component: {fileID: 3580167414323354427}
+  - component: {fileID: 3401478722897103618}
   m_Layer: 5
   m_Name: Inventory Canvas
   m_TagString: Untagged
@@ -577,7 +577,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3580167414323354427
+--- !u!114 &3401478722897103618
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -591,7 +591,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 6497539495903968620}
   equipmentUI: {fileID: 5403932497517463138}
-  itemsParent: {fileID: 0}
+  player: {fileID: 2004123961515843090}
+  slots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1143156865892863688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,7 +1584,7 @@ GameObject:
   - component: {fileID: -8711495134499382632}
   m_Layer: 9
   m_Name: Hero
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1684,7 +1703,6 @@ MonoBehaviour:
   timePassed: 0
   damage: 20
   armor: 10
-  focus: {fileID: 0}
   myAnimator: {fileID: 2105061790805437857}
   curSpeed: 0
   horoSpeed: 0
@@ -1693,6 +1711,9 @@ MonoBehaviour:
   mosX: -4.337816
   mosY: -3.2773538
   setMouse: {x: 0.2772467, y: 1.5200764, z: 0}
+  isDead: 0
+  inventory:
+    slots: []
 --- !u!70 &4965983777575224182
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2454,6 +2475,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 423117921787926533, guid: bc64bd5bf8ad5f045ad5a8a31fba902a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2004123961515843090}
+    - target: {fileID: 423117921787926533, guid: bc64bd5bf8ad5f045ad5a8a31fba902a, type: 3}
+      propertyPath: equipmentUI
+      value: 
+      objectReference: {fileID: 5403932497517463138}
     - target: {fileID: 1227582320889978467, guid: bc64bd5bf8ad5f045ad5a8a31fba902a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2946,7 +2975,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 423117921787926533, guid: bc64bd5bf8ad5f045ad5a8a31fba902a, type: 3}
+    - {fileID: 5399503972464727554, guid: bc64bd5bf8ad5f045ad5a8a31fba902a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -6,16 +6,13 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-
-    public GameObject inventoryUI;  // The entire UI
+    public GameObject inventoryUI;
     public GameObject equipmentUI;
-    public Transform itemsParent;   // The parent object of all the items
-
-    Inventory inventory;    // Our current inventory
+    public Player player;
+    public List<SlotUI> slots = new List<SlotUI>();
 
     void Start()
     {
-        inventory = Inventory.instance;
         inventoryUI.SetActive(false); // Click F to bring up inventory (can change)
         equipmentUI.SetActive(false);
     }
@@ -27,27 +24,24 @@ public class InventoryUI : MonoBehaviour
         {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
             equipmentUI.SetActive(!equipmentUI.activeSelf);
-            UpdateUI();
+            Setup();
         }
     }
 
-    // Update the inventory UI by:
-    //		- Adding items
-    //		- Clearing empty slots
-    // This is called using a delegate on the Inventory.
-    public void UpdateUI()
+    void Setup()
     {
-        InventorySlot[] slots = GetComponentsInChildren<InventorySlot>();
-
-        for (int i = 0; i < slots.Length; i++)
+        if (slots.Count == player.inventory.slots.Count)
         {
-            if (i < inventory.items.Count)
+            for (int i = 0; i < slots.Count; i++)
             {
-                slots[i].AddItem(inventory.items[i]);
-            }
-            else
-            {
-                slots[i].ClearSlot();
+                if (player.inventory.slots[i].type != ItemType.NONE)
+                {
+                    slots[i].SetItem(player.inventory.slots[i]);
+                }
+                else
+                {
+                    slots[i].SetEmpty();
+                }
             }
         }
     }

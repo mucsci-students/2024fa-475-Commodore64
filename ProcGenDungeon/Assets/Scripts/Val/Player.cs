@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
   public int damage;
   public int armor;
   Camera cam;
-  public Interactable focus;
   public Animator myAnimator;
   public float curSpeed;
   public float horoSpeed;
@@ -26,6 +25,12 @@ public class Player : MonoBehaviour
   public float mosY;
   public Vector3 setMouse;
   public bool isDead;
+  public Inventory inventory;
+
+  private void Awake()
+  {
+    inventory = new Inventory(18);
+  }
 
   // Start is called before the first frame update
   void Start()
@@ -50,10 +55,12 @@ public class Player : MonoBehaviour
     {
       StartCoroutine(deathTime());
     }
-    else if (isDead){
+    else if (isDead)
+    {
       //do nothing
     }
-    else{
+    else
+    {
       mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
       mousepos.z = 0f;
       mousepos = mousepos - transform.position;
@@ -85,54 +92,16 @@ public class Player : MonoBehaviour
       // left mouse button
       if (Input.GetMouseButtonDown(0) && cd)
       {
-        RaycastHit2D hit = Physics2D.Raycast(Input.mousePosition, -Vector2.up);
-
-        if (hit.collider != null)
-        {
-          Debug.Log("PASS 1");
-          Interactable interactable = hit.collider.GetComponent<Interactable>();
-          if (interactable != null)
-          {
-            SetFocus(interactable);
-          }
-          else
-          {
-            RemoveFocus();
-          }
-        }
-        else
-        {
-          Debug.Log("FAIL 1");
-          myAnimator.SetTrigger("TriAtk");
-          StartCoroutine(waiterAnimate());
-          StartCoroutine(waiterAtk());
-          StartCoroutine(waiter());
-        }
+        myAnimator.SetTrigger("TriAtk");
+        StartCoroutine(waiterAnimate());
+        StartCoroutine(waiterAtk());
+        StartCoroutine(waiter());
       }
 
       // right mouse button
       if (Input.GetMouseButtonDown(1))
       {
 
-      }
-
-      void SetFocus(Interactable newFocus)
-      {
-        if (newFocus != focus)
-        {
-          if (focus != null)
-            focus.OnDefocused();
-          focus = newFocus;
-        }
-
-        newFocus.OnFocused(transform);
-      }
-
-      void RemoveFocus()
-      {
-        if (focus != null)
-          focus.OnDefocused();
-        focus = null;
       }
 
       if (invulne)

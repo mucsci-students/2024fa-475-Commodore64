@@ -1,22 +1,22 @@
 using UnityEngine;
-
-[CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
-public class Item : ScriptableObject
+public class Item : MonoBehaviour
 {
-    new public string name = "New Item";    // Name of the item
-    public Sprite icon = null;              // Item icon
-    public bool showInInventory = true;
-
-    // Called when the item is pressed in the inventory
-    public virtual void Use()
+    public Sprite icon; // Item icon
+    public ItemType type;
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Use the item
-        // Something may happen
-    }
+        Player player = collision.GetComponent<Player>();
 
-    // Call this method to remove the item from inventory
-    public void RemoveFromInventory()
-    {
-        Inventory.instance.Remove(this);
+        if (player.tag == "Player" || !collision.GetComponent<projectile>().isWarp || collision.GetComponent<ItemType>() != ItemType.NONE)
+        {
+            player.inventory.Add(this);
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Destroy(collision.GetComponent<projectile>());
+        }
     }
 }
+
+public enum ItemType { NONE, WEAPON, ARMOR, COLLECTABLE }
