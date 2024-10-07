@@ -21,8 +21,9 @@ public class projectile : MonoBehaviour
     {
         player = GameObject.Find("Hero");
         offscreen = new Vector3 (0f, 0f, 0f);
-        scaling = new Vector3 (50f, 50f, 50f);
+        scaling = new Vector3 (25f, 25f, 25f);
         transform.position = offscreen;
+        transform.localScale = offscreen;
         movespeed = 0f;
         isWarp = false;
         overPit = false;
@@ -39,7 +40,7 @@ public class projectile : MonoBehaviour
 
         transform.position += deltaPos;
         
-        if (Input.GetMouseButtonDown(1)){
+        if (Input.GetKeyDown(KeyCode.Q)){
             if (isWarp){
                 if(!overPit){
                     player.transform.position = transform.position;
@@ -47,7 +48,7 @@ public class projectile : MonoBehaviour
                 teleOffScreen();
             }
             else{
-                movespeed = 1f;
+                movespeed = 10f;
                 setDir = Vector3.Normalize(mousepos);
                 isWarp = true;
                 transform.position = player.transform.position;
@@ -68,7 +69,7 @@ public class projectile : MonoBehaviour
 	}
 
     void OnTriggerExit2D(Collider2D other){
-        if (other.gameObject.layer == 11) {
+        if (other.gameObject.layer == 7) {
             overPit = false;
         }
     }
