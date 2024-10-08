@@ -69,7 +69,7 @@ public class projectile : MonoBehaviour
 	}
 
     void OnTriggerExit2D(Collider2D other){
-        if (other.gameObject.layer == 7) {
+        if (other.gameObject.layer == 11) {
             overPit = false;
         }
     }

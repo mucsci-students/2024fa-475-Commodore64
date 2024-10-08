@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
   void Start()
   {
     myAnimator = GetComponent<Animator>();
-    health = 1000000000;
+    health = 100;
     // currentHealth = 100;
     // maxHealth = 100;
     transform.position = new Vector3(0f, 0f, 0f);
