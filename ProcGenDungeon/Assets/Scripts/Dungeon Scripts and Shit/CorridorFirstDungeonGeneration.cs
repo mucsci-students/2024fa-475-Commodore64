@@ -3,9 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CorridorFirstDungeonGeneration : SimpleRandomWalkDungeonGenerator
 {
+    [SerializeField]
+    private GameObject skullSpawner;
+    [SerializeField]
+    private GameObject zombieSpawner;
+    [SerializeField]
+    private GameObject skeletonSpawner;
+    [SerializeField]
+    private GameObject bossPortal;
     [SerializeField]
     private int corridorLength = 14, corridorCount = 5;
     [SerializeField]
@@ -28,6 +37,9 @@ public class CorridorFirstDungeonGeneration : SimpleRandomWalkDungeonGenerator
 
         CreateRoomsAtDeadEnd(deadEnds, roomPositions);
 
+        var positionLastDeadEnd = deadEnds[0];
+        Instantiate(bossPortal, new Vector3(positionLastDeadEnd.x + 15, positionLastDeadEnd.y + 15, 0), Quaternion.identity);
+
         floorPositions.UnionWith(roomPositions);
 
         for(int i = 0; i < corridors.Count; i++) {
@@ -46,6 +58,7 @@ public class CorridorFirstDungeonGeneration : SimpleRandomWalkDungeonGenerator
                 roomPositions.UnionWith(roomFloor);
             }
         }
+        
      }
 
      private List<Vector2Int> FindAllDeadEnds(HashSet<Vector2Int> floorPositions) {
@@ -89,7 +102,11 @@ public class CorridorFirstDungeonGeneration : SimpleRandomWalkDungeonGenerator
         foreach(var roomPosition in roomToCreate) {
             var roomFloor = RunRandomWalk(randomWalkParameters, roomPosition);
             roomPositions.UnionWith(roomFloor);
+            Instantiate(skullSpawner, new Vector3(roomPosition.x, roomPosition.y, 0), Quaternion.identity);
+            Instantiate(zombieSpawner, new Vector3(roomPosition.x + 4, roomPosition.y, 0), Quaternion.identity);
+            Instantiate(skeletonSpawner, new Vector3(roomPosition.x + 9, roomPosition.y - 10, 0), Quaternion.identity);
         }
+
         return roomPositions;
      }
 

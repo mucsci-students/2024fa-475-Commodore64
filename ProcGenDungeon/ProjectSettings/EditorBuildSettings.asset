@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AutoGenDungeon.unity
     guid: 5f8f1a603022e4500997b39aca3a046b
+  - enabled: 1
+    path: Assets/Scenes/Boss Room.unity
+    guid: d59d84cc7050c2f4696996623955a9c8
   m_configObjects: {}
