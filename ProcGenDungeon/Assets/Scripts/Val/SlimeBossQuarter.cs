@@ -56,7 +56,7 @@ public class SlimeBossQuarter : MonoBehaviour
             ps.invulne = true;
             ps.health -= System.Math.Max(100 - ps.armor, 0);
         }
-        else if (other.gameObject.layer == 0){
+        else if (other.gameObject.layer == 0 || other.gameObject.layer == 10 || other.gameObject.layer == 6){
             changeDir =  true;
         }
 

@@ -6,6 +6,7 @@ using UnityEditor;
 public class projectile : MonoBehaviour
 {
     public GameObject player;
+    public Player ps;
     public Vector3 offscreen;
     public Vector3 mousepos;
     public Vector3 setDir;
@@ -20,6 +21,7 @@ public class projectile : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Hero");
+        ps = player.GetComponent<Player>();
         offscreen = new Vector3 (0f, 0f, 0f);
         scaling = new Vector3 (25f, 25f, 25f);
         transform.position = offscreen;
@@ -40,7 +42,7 @@ public class projectile : MonoBehaviour
 
         transform.position += deltaPos;
         
-        if (Input.GetKeyDown(KeyCode.Q)){
+        if (Input.GetKeyDown(KeyCode.Q) && !ps.isDead){
             if (isWarp){
                 if(!overPit){
                     player.transform.position = transform.position;

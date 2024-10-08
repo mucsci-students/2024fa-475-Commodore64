@@ -56,7 +56,7 @@ public class SlimeBossHalf : MonoBehaviour
         if (other.gameObject.layer == 12) {
             health -= ps.damage;
         }
-        else if (other.gameObject.layer == 0){
+        else if (other.gameObject.layer == 0 || other.gameObject.layer == 10 || other.gameObject.layer == 6){
             changeDir =  true;
         }
 	}
