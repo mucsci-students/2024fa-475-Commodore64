@@ -51,6 +51,8 @@ public class Player : MonoBehaviour
     cam = Camera.main;
     curSpeed = 0;
     isDead = false;
+
+    DontDestroyOnLoad(this.gameObject);
   }
 
   void Update()
