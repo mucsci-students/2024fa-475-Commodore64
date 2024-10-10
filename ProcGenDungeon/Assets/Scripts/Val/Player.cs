@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
   public float moveSpeed;
   public int currentHealth;
   public int maxHealth = 100;
+  public int currentEnergy;
+  public int maxEnergy = 100;
   public bool cd;
   public bool invulne;
   public float timePassed;
@@ -26,8 +28,9 @@ public class Player : MonoBehaviour
   public float mosY;
   public Vector3 setMouse;
   public bool isDead;
-  public Inventory inventory;
   public HealthBar healthBar;
+  public EnergyBar energyBar;
+  public Inventory inventory;
 
   private void Awake()
   {
@@ -41,6 +44,8 @@ public class Player : MonoBehaviour
     myAnimator = GetComponent<Animator>();
     currentHealth = maxHealth;
     healthBar.SetMaxHealth(maxHealth);
+    currentEnergy = maxEnergy;
+    energyBar.SetMaxEnergy(maxEnergy);
     transform.position = new Vector3(0f, 0f, 0f);
     moveSpeed = 7;
     timePassed = 0;
