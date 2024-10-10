@@ -39,21 +39,21 @@ public class Inventory
         {
             this.type = item.type;
             this.icon = item.icon;
-            count = (int)ItemType.WEAPON; // temporary to keep some count for the first item
+            count++;
             item.enabled = true;
         }
 
-        public void ClearSlot()
+        public void RemoveItem()
         {
-            // item = null;
-            // icon.sprite = null;
-            // icon.enabled = false;
-            // removeButton.interactable = false;
-        }
-
-        public void OnRemoveButton()
-        {
-            //Inventory.instance.Remove(item);
+            if (count > 0)
+            {
+                count--;
+                if (count == 0)
+                {
+                    icon = null;
+                    type = ItemType.NONE;
+                }
+            }
         }
     }
 
@@ -69,18 +69,20 @@ public class Inventory
 
     public void Add(Item newItem)
     {
+        // If something matches current inventory
         foreach (InventorySlot slot in slots)
         {
-            if (slot.type == newItem.type && slot.CanAddItem())
+            if (slot.type == newItem.type && slot.CanAddItem() && slot.icon == newItem.icon)
             {
                 slot.AddItem(newItem);
                 return;
             }
         }
 
+        // Else add item to new slot
         foreach (InventorySlot slot in slots)
         {
-            if (slot.type == ItemType.NONE)
+            if (slot.type == ItemType.NONE && slot.icon == null)
             {
                 slot.AddItem(newItem);
                 return;
@@ -88,4 +90,8 @@ public class Inventory
         }
     }
 
+    public void Remove(int index)
+    {
+        slots[index].RemoveItem();
+    }
 }

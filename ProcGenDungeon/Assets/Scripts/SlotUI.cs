@@ -17,7 +17,7 @@ public class SlotUI : MonoBehaviour
             itemIcon.sprite = slot.icon;
             itemIcon.color = new Color(1, 1, 1, 1);
             itemIcon.enabled = true;
-            //removeButton.interactable = true;
+            removeButton.interactable = true;
             if (slot.count == 0)
             {
                 quantityText.text = "";
@@ -36,5 +36,6 @@ public class SlotUI : MonoBehaviour
         itemIcon.sprite = null;
         itemIcon.color = new Color(1, 1, 1, 0);
         quantityText.text = "";
+        removeButton.interactable = false;
     }
 }
