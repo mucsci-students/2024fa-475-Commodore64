@@ -7,6 +7,8 @@ public class EnergyBar : MonoBehaviour
 {
     public Slider slider;
 
+    private float timeUntilRegen;
+
     public void SetMaxEnergy(int energy)
     {
         slider.maxValue = energy;
@@ -26,8 +28,22 @@ public class EnergyBar : MonoBehaviour
             slider.value = 0;
         }
     }
+
+    void Update() {
+        timeUntilRegen -= Time.deltaTime;
+
+        if(timeUntilRegen <= 0) {
+            slider.value += 5;
+            SetTimeUntilRegen();
+        }
+    }
+
     public int getEnergy()
     {
         return (int)slider.value;
+    }
+
+    private void SetTimeUntilRegen() {
+        timeUntilRegen = 2f;
     }
 }
