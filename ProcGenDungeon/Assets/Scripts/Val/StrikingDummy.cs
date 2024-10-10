@@ -5,6 +5,8 @@ using UnityEngine;
 public class StrikingDummy : MonoBehaviour
 {
     public Animator myAnimator;
+    [SerializeField]
+    public AudioSource myAudioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,7 @@ public class StrikingDummy : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.layer == 12) {
             myAnimator.SetTrigger("Bob");
+            myAudioSource.Play();
         }
 	}
 }
