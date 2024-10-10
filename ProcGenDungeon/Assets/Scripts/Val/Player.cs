@@ -9,9 +9,8 @@ public class Player : MonoBehaviour
   public GameObject attackHitbox;
   public Vector3 moveDirection;
   public float moveSpeed;
-  public int health;
-  // public int currentHealth;
-  // public int maxHealth;
+  public int currentHealth;
+  public int maxHealth = 100;
   public bool cd;
   public bool invulne;
   public float timePassed;
@@ -28,6 +27,7 @@ public class Player : MonoBehaviour
   public Vector3 setMouse;
   public bool isDead;
   public Inventory inventory;
+  public HealthBar healthBar;
 
   private void Awake()
   {
@@ -39,9 +39,8 @@ public class Player : MonoBehaviour
   void Start()
   {
     myAnimator = GetComponent<Animator>();
-    health = 100;
-    // currentHealth = 100;
-    // maxHealth = 100;
+    currentHealth = maxHealth;
+    healthBar.SetMaxHealth(maxHealth);
     transform.position = new Vector3(0f, 0f, 0f);
     moveSpeed = 7;
     timePassed = 0;
@@ -56,7 +55,7 @@ public class Player : MonoBehaviour
 
   void Update()
   {
-    if (health <= 0 && !isDead)
+    if (currentHealth <= 0 && !isDead)
     {
       StartCoroutine(deathTime());
     }
@@ -174,62 +173,4 @@ public class Player : MonoBehaviour
     myAnimator.SetBool("mosLeft", false);
     myAnimator.SetBool("mosRight", false);
   }
-
-  // public class HealthUI : MonoBehaviour
-  // {
-  //   const float stayTime = 3;
-  //   public RectTransform healthSlider;
-  //   public GameObject graphic;
-
-  //   Transform cam;
-  //   Transform target;
-  //   Player stats;
-
-  //   float healthPercentOld;
-  //   float lastHealthChangeTime;
-
-  //   public void Init(Transform target, Player stats)
-  //   {
-  //     this.target = target;
-  //     this.stats = stats;
-
-  //     cam = Camera.main.transform;
-  //     graphic.SetActive(false);
-  //     healthPercentOld = GetHealthPercent();
-  //   }
-
-  //   void LateUpdate()
-  //   {
-  //     if (target == null)
-  //     {
-  //       Destroy(gameObject);
-  //       return;
-  //     }
-  //     transform.position = target.position;
-  //     transform.LookAt(new Vector3(cam.position.x, transform.position.y, cam.position.z), Vector3.down);
-
-  //     float healthPercent = GetHealthPercent();
-  //     healthSlider.localScale = new Vector3(healthPercent, 1, 1);
-
-  //     if (!Mathf.Approximately(healthPercent, healthPercentOld))
-  //     {
-  //       healthPercentOld = healthPercent;
-  //       lastHealthChangeTime = Time.time;
-  //       graphic.SetActive(true);
-  //     }
-
-  //     if (graphic.activeSelf)
-  //     {
-  //       if (Time.time - lastHealthChangeTime > stayTime)
-  //       {
-  //         graphic.SetActive(false);
-  //       }
-  //     }
-  //   }
-
-  //   float GetHealthPercent()
-  //   {
-  //     return Mathf.Clamp01(stats.currentHealth / (float)stats.maxHealth);
-  //   }
-  // }
 }

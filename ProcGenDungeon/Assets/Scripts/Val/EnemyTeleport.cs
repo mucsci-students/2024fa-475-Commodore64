@@ -23,59 +23,73 @@ public class EnemyTeleport : MonoBehaviour
         player = GameObject.Find("Hero");
         ps = player.GetComponent<Player>();
         timePassed = 0;
-        right = new Vector3 (9f, 9f, 0f);
-        left = new Vector3 (-9f, 9f, 0f);
+        right = new Vector3(9f, 9f, 0f);
+        left = new Vector3(-9f, 9f, 0f);
         agro = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(health <= 0){
+        if (health <= 0)
+        {
             Destroy(gameObject);
         }
         transform.GetChild(0).GetComponent<zomHealth>().hb = health;
         playerDir = player.transform.position - transform.position;
-        if(agro){
-            if (playerDir.x > 0){
+        if (agro)
+        {
+            if (playerDir.x > 0)
+            {
                 transform.localScale = right;
             }
-            else{
+            else
+            {
                 transform.localScale = left;
             }
 
             timePassed += Time.deltaTime;
-            if (timePassed < 1){
+            if (timePassed < 1)
+            {
                 // do nothing
             }
-            else if (timePassed < 2){
+            else if (timePassed < 2)
+            {
                 transform.position = dest;
             }
-            else{
+            else
+            {
                 timePassed = 0;
                 Instantiate(telepoint, player.transform.position, Quaternion.identity);
                 dest = player.transform.position;
             }
         }
-        else{
-            if(playerDir.magnitude < 8){
+        else
+        {
+            if (playerDir.magnitude < 8)
+            {
                 agro = true;
                 timePassed = 0;
             }
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.layer == 12) {
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 12)
+        {
             health -= ps.damage;
         }
-	}
+    }
 
-    void OnTriggerStay2D(Collider2D other) {
-        if (other.gameObject.layer == 9 && !ps.invulne) {
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 9 && !ps.invulne)
+        {
             ps.invulne = true;
-            ps.health -= System.Math.Max(80 - ps.armor, 0);
+            ps.currentHealth -= System.Math.Max(80 - ps.armor, 0);
+            ps.healthBar.SetHealth(ps.currentHealth);
         }
 
-	}
+    }
 }

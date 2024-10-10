@@ -12,14 +12,14 @@ public class zomHealth : MonoBehaviour
     void Start()
     {
         hb = 100;
-        offset = new Vector3 (0f, 1f, 0f);
+        offset = new Vector3(0f, 1f, 0f);
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position = transform.parent.position + offset;
-        scaling = new Vector3 (hb/300f, 0.025f, 0f);
+        scaling = new Vector3(hb / 300f, 0.025f, 0f);
         transform.localScale = scaling;
 
     }

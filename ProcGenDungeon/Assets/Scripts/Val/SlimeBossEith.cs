@@ -15,7 +15,7 @@ public class SlimeBossEith : MonoBehaviour
     {
         player = GameObject.Find("Hero");
         ps = player.GetComponent<Player>();
-        
+
         health = 100;
 
         changeDir = true;
@@ -24,13 +24,15 @@ public class SlimeBossEith : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(health <= 0){
+        if (health <= 0)
+        {
             Destroy(gameObject);
         }
-        transform.localScale = new Vector3 (health/20f, health/20f, 0);
+        transform.localScale = new Vector3(health / 20f, health / 20f, 0);
 
         playerDir = player.transform.position - transform.position;
-        if(changeDir){
+        if (changeDir)
+        {
             setDir = Vector3.Normalize(playerDir);
             changeDir = false;
         }
@@ -38,19 +40,25 @@ public class SlimeBossEith : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.layer == 12) {
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 12)
+        {
             health -= ps.damage;
         }
-        else if (other.gameObject.layer == 0 || other.gameObject.layer == 10 || other.gameObject.layer == 6){
-            changeDir =  true;
+        else if (other.gameObject.layer == 0 || other.gameObject.layer == 10 || other.gameObject.layer == 6)
+        {
+            changeDir = true;
         }
-	}
-    void OnTriggerStay2D(Collider2D other) {
-        if (other.gameObject.layer == 9 && !ps.invulne) {
+    }
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 9 && !ps.invulne)
+        {
             ps.invulne = true;
-            ps.health -= System.Math.Max(100 - ps.armor, 0);
+            ps.currentHealth -= System.Math.Max(100 - ps.armor, 0);
+            ps.healthBar.SetHealth(ps.currentHealth);
         }
 
-	}
+    }
 }

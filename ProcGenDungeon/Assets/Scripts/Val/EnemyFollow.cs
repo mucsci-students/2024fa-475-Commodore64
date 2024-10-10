@@ -23,8 +23,8 @@ public class EnemyFollow : MonoBehaviour
         player = GameObject.Find("Hero");
         ps = player.GetComponent<Player>();
 
-        right = new Vector3 (10f, 10f, 0f);
-        left = new Vector3 (-10f, 10f, 0f);
+        right = new Vector3(10f, 10f, 0f);
+        left = new Vector3(-10f, 10f, 0f);
         health = 100;
         timePassed = 0;
         moveSpeed = 1.5f;
@@ -36,66 +36,83 @@ public class EnemyFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerDir = player.transform.position - transform.position; 
-        if (playerDir.x > 0){
+        playerDir = player.transform.position - transform.position;
+        if (playerDir.x > 0)
+        {
             transform.localScale = right;
         }
-        else{
+        else
+        {
             transform.localScale = left;
         }
 
-        if(health <= 0){
+        if (health <= 0)
+        {
             Destroy(gameObject);
         }
         transform.GetChild(0).GetComponent<zomHealth>().hb = health;
 
-        if(!agro){
-            if (playerDir.magnitude < 5){
+        if (!agro)
+        {
+            if (playerDir.magnitude < 5)
+            {
                 agro = true;
                 timePassed = 0;
             }
 
             timePassed += Time.deltaTime;
-            if(timePassed < 3f){
+            if (timePassed < 3f)
+            {
                 moveDir = Vector3.zero;
             }
-            else if (timePassed < 5f){
+            else if (timePassed < 5f)
+            {
                 moveDir = randDir;
             }
-            else{
+            else
+            {
                 timePassed = 0;
                 randDir = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
                 randDir = Vector3.Normalize(randDir);
             }
         }
-        else if(hit){
+        else if (hit)
+        {
             timePassed += Time.deltaTime;
-            if (timePassed < 3 ){
+            if (timePassed < 3)
+            {
                 moveDir = -playerDir;
             }
-            else{
+            else
+            {
                 hit = false;
                 timePassed = 0;
             }
         }
-        else{
+        else
+        {
             moveDir = playerDir;
         }
         transform.position += Vector3.Normalize(moveDir) * moveSpeed * Time.deltaTime;
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.layer == 12) {
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 12)
+        {
             health -= ps.damage;
         }
-	}
+    }
 
-    void OnTriggerStay2D(Collider2D other) {
-        if (other.gameObject.layer == 9 && !ps.invulne) {
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 9 && !ps.invulne)
+        {
             hit = true;
             ps.invulne = true;
-            ps.health -= System.Math.Max(50 - ps.armor, 0);
+            ps.currentHealth -= System.Math.Max(50 - ps.armor, 0);
+            ps.healthBar.SetHealth(ps.currentHealth);
         }
 
-	}
+    }
 }

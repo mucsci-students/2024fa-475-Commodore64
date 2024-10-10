@@ -10,7 +10,7 @@ public class EnemyDash : MonoBehaviour
     public Vector3 setMove;
     public float timePassed;
     public float moveSpeed;
-    public int health; 
+    public int health;
     public Vector3 right;
     public Vector3 left;
     public Vector3 randDir;
@@ -22,8 +22,8 @@ public class EnemyDash : MonoBehaviour
         player = GameObject.Find("Hero");
         ps = player.GetComponent<Player>();
         timePassed = 0;
-        right = new Vector3 (6f, 6f, 0f);
-        left = new Vector3 (-6f, 6f, 0f);
+        right = new Vector3(6f, 6f, 0f);
+        left = new Vector3(-6f, 6f, 0f);
         agro = false;
         randDir = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
         randDir = Vector3.Normalize(randDir);
@@ -32,52 +32,66 @@ public class EnemyDash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(health <= 0){
+        if (health <= 0)
+        {
             Destroy(gameObject);
         }
         transform.GetChild(0).GetComponent<zomHealth>().hb = health;
         moveDir = player.transform.position - transform.position;
-        if (agro){
+        if (agro)
+        {
             timePassed += Time.deltaTime;
-            
-            if (timePassed < 1){
-                
+
+            if (timePassed < 1)
+            {
+
                 setMove = Vector3.Normalize(moveDir);
                 moveSpeed = -0.5f;
-                if (setMove.x > 0){
+                if (setMove.x > 0)
+                {
                     transform.localScale = right;
                 }
-                else{
+                else
+                {
                     transform.localScale = left;
                 }
             }
-            else if (timePassed < 2){
+            else if (timePassed < 2)
+            {
                 moveSpeed = 5;
             }
-            else if (timePassed < 4){
+            else if (timePassed < 4)
+            {
                 moveSpeed = 0.5f;
-                
+
             }
-            else{
+            else
+            {
                 timePassed = 0;
             }
             transform.position += setMove * moveSpeed * Time.deltaTime;
         }
-        else{
-            if(moveDir.magnitude < 3){
+        else
+        {
+            if (moveDir.magnitude < 3)
+            {
                 agro = true;
                 timePassed = 0;
             }
-            else{
+            else
+            {
                 timePassed += Time.deltaTime;
-                if (timePassed < 2){
+                if (timePassed < 2)
+                {
                     //do nothing
                 }
-                else if(timePassed < 3){
+                else if (timePassed < 3)
+                {
                     moveSpeed = 3;
                     transform.position += randDir * moveSpeed * Time.deltaTime;
                 }
-                else{
+                else
+                {
                     randDir = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
                     randDir = Vector3.Normalize(randDir);
                     timePassed = 0;
@@ -85,17 +99,22 @@ public class EnemyDash : MonoBehaviour
             }
         }
     }
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.layer == 12) {
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 12)
+        {
             health -= ps.damage;
         }
-	}
+    }
 
-    void OnTriggerStay2D(Collider2D other) {
-        if (other.gameObject.layer == 9 && !ps.invulne) {
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 9 && !ps.invulne)
+        {
             ps.invulne = true;
-            ps.health -= System.Math.Max(30 - ps.armor, 0);
+            ps.currentHealth -= System.Math.Max(30 - ps.armor, 0);
+            ps.healthBar.SetHealth(ps.currentHealth);
         }
 
-	}
+    }
 }

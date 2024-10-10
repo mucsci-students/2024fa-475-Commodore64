@@ -14,9 +14,12 @@ public class KillBox : MonoBehaviour
         ps = player.GetComponent<Player>();
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("Player")) {
-            ps.health -= System.Math.Max(9999999 - ps.armor, 0);
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            ps.currentHealth -= System.Math.Max(9999999 - ps.armor, 0);
+            ps.healthBar.SetHealth(ps.currentHealth);
         }
-	}
+    }
 }
