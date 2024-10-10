@@ -44,6 +44,6 @@ public class EnergyBar : MonoBehaviour
     }
 
     private void SetTimeUntilRegen() {
-        timeUntilRegen = 2f;
+        timeUntilRegen = 3f;
     }
 }

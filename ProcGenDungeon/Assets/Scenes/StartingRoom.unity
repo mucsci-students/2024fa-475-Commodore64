@@ -657,67 +657,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!1001 &503555507
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1400897001718086886, guid: 56826b05b4aac4d4ea5253d134a6a530, type: 3}
-      propertyPath: transition
-      value: 
-      objectReference: {fileID: 944142350}
-    - target: {fileID: 2678455357865526653, guid: 56826b05b4aac4d4ea5253d134a6a530, type: 3}
-      propertyPath: m_Name
-      value: Boss Portal
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858992536188404854, guid: 56826b05b4aac4d4ea5253d134a6a530, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -20.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858992536188404854, guid: 56826b05b4aac4d4ea5253d134a6a530, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858992536188404854, guid: 56826b05b4aac4d4ea5253d134a6a530, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858992536188404854, guid: 56826b05b4aac4d4ea5253d134a6a530, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858992536188404854, guid: 56826b05b4aac4d4ea5253d134a6a530, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858992536188404854, guid: 56826b05b4aac4d4ea5253d134a6a530, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858992536188404854, guid: 56826b05b4aac4d4ea5253d134a6a530, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858992536188404854, guid: 56826b05b4aac4d4ea5253d134a6a530, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858992536188404854, guid: 56826b05b4aac4d4ea5253d134a6a530, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858992536188404854, guid: 56826b05b4aac4d4ea5253d134a6a530, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 56826b05b4aac4d4ea5253d134a6a530, type: 3}
 --- !u!1 &675406356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,9 +955,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2063255
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: -1052852809
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: efd5b27ee18a44691b239716260c0dbf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2578,9 +2517,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2063255
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: -1052852809
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: efd5b27ee18a44691b239716260c0dbf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2755,9 +2694,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2063255
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: -1052852809
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: efd5b27ee18a44691b239716260c0dbf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7818,9 +7757,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2063255
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: -1052852809
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: efd5b27ee18a44691b239716260c0dbf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -9154,6 +9093,5 @@ SceneRoots:
   - {fileID: 385673550}
   - {fileID: 343056513}
   - {fileID: 2069788406}
-  - {fileID: 503555507}
   - {fileID: 792613001}
   - {fileID: 2059451640}

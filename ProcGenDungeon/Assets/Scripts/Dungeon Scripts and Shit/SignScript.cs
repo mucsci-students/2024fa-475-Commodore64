@@ -24,19 +24,21 @@ public class SignScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && playerInRange) {
+        /*if(playerInRange) {
             if(dialogueBox.activeInHierarchy) {
                 dialogueBox.SetActive(false);
             } else {
                 dialogueBox.SetActive(true);
                 dialogueText.text = dialogue;
             }
-        }
+        }*/
     }
 
     private void OnTriggerEnter2D(Collider2D col) {
         if (col.CompareTag("Player")) {
             playerInRange = true;
+            dialogueBox.SetActive(true);
+            dialogueText.text = dialogue;
         }
     }
 
