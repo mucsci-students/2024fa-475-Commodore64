@@ -58,6 +58,8 @@ public class Player : MonoBehaviour
     isDead = false;
 
     DontDestroyOnLoad(this.gameObject);
+    this.gameObject.transform.position = new Vector3(0f, 0f, 0f);
+
   }
 
   void Update()
