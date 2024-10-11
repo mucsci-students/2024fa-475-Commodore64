@@ -24,12 +24,18 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeUntilSpawn -= Time.deltaTime;
 
-        if(timeUntilSpawn <= 0) {
-            Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-            SetTimeUntilSpawn();
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        int numberOfEnemies = enemies.Length;
+
+        timeUntilSpawn -= Time.deltaTime;
+        if (numberOfEnemies < 30) {
+            if(timeUntilSpawn <= 0) {
+                Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+                SetTimeUntilSpawn();
+            }
         }
+        
     }
 
     private void SetTimeUntilSpawn() {

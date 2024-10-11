@@ -37,7 +37,7 @@ public class CorridorFirstDungeonGeneration : SimpleRandomWalkDungeonGenerator
 
         CreateRoomsAtDeadEnd(deadEnds, roomPositions);
 
-        var positionLastDeadEnd = deadEnds[0];
+        var positionLastDeadEnd = deadEnds[deadEnds.Count - 1];
         Instantiate(bossPortal, new Vector3(positionLastDeadEnd.x + 15, positionLastDeadEnd.y + 15, 0), Quaternion.identity);
 
         floorPositions.UnionWith(roomPositions);
