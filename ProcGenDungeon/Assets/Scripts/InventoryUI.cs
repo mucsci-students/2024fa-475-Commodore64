@@ -9,7 +9,6 @@ public class InventoryUI : MonoBehaviour
     public GameObject inventoryUI;
     public GameObject equipmentUI;
     public Player player;
-    public Button removeButton;
     public List<SlotUI> slots = new List<SlotUI>();
 
     void Start()

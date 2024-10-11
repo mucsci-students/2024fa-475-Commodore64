@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -104,10 +105,13 @@ public class Player : MonoBehaviour
       // left mouse button
       if (Input.GetMouseButtonDown(0) && cd)
       {
-        myAnimator.SetTrigger("TriAtk");
-        StartCoroutine(waiterAnimate());
-        StartCoroutine(waiterAtk());
-        StartCoroutine(waiter());
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+          myAnimator.SetTrigger("TriAtk");
+          StartCoroutine(waiterAnimate());
+          StartCoroutine(waiterAtk());
+          StartCoroutine(waiter());
+        }
       }
 
       // right mouse button
