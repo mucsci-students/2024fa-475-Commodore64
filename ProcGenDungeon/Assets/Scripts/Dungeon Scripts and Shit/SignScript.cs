@@ -15,10 +15,17 @@ public class SignScript : MonoBehaviour
     [SerializeField]
     public bool playerInRange = false;
 
+    [SerializeField]
+    private float timeUntilSignDisappears = 3f;
+
     // Start is called before the first frame update
     void Start()
     {
         dialogueBox.SetActive(false);
+    }
+
+    void Awake()  {
+        timeUntilSignDisappears = 3f;
     }
 
     // Update is called once per frame
@@ -32,6 +39,12 @@ public class SignScript : MonoBehaviour
                 dialogueText.text = dialogue;
             }
         }*/
+
+        timeUntilSignDisappears -= Time.deltaTime;
+        if(timeUntilSignDisappears <= 0) {
+            dialogueBox.SetActive(false);
+            timeUntilSignDisappears = 3f;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col) {
