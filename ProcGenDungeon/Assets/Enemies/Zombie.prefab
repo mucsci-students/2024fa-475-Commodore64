@@ -220,6 +220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f1bcb76c7d87f340b1eafeee3bf99cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atkSound: {fileID: 8300000, guid: cac136d9bda06f4488b6e1e4a5fda609, type: 3}
+  hurtSound: {fileID: 8300000, guid: 96ead8e3bf3962f4a82eca8d3e3abeb1, type: 3}
   player: {fileID: 0}
   ps: {fileID: 0}
   playerDir: {x: 0, y: 0, z: 0}

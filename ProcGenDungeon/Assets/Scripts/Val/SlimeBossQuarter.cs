@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SlimeBossQuarter : MonoBehaviour
 {
+    [SerializeField] private AudioClip atkSound;
+    [SerializeField] private AudioClip hurtSound;
     public GameObject player;
     public GameObject clonee;
     public Vector3 playerDir;
@@ -54,6 +56,7 @@ public class SlimeBossQuarter : MonoBehaviour
         if (other.gameObject.layer == 12)
         {
             health -= ps.damage;
+            SoundFX.instance.playSound(hurtSound, transform, 1f);
         }
     }
     void OnTriggerStay2D(Collider2D other)
@@ -63,6 +66,7 @@ public class SlimeBossQuarter : MonoBehaviour
             ps.invulne = true;
             ps.currentHealth -= System.Math.Max(100 - ps.armor, 0);
             ps.healthBar.SetHealth(ps.currentHealth);
+            SoundFX.instance.playSound(atkSound, transform, 1f);
         }
         else if (other.gameObject.layer == 0 || other.gameObject.layer == 10 || other.gameObject.layer == 6)
         {

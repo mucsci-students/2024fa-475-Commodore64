@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyTeleport : MonoBehaviour
 {
+    [SerializeField] private AudioClip atkSound;
+    [SerializeField] private AudioClip teleSound;
+    [SerializeField] private AudioClip hurtSound;
     public GameObject player;
     public Player ps;
     public GameObject telepoint;
@@ -56,9 +59,11 @@ public class EnemyTeleport : MonoBehaviour
             else if (timePassed < 2)
             {
                 transform.position = dest;
+                
             }
             else
             {
+                SoundFX.instance.playSound(teleSound, transform, 1f);
                 timePassed = 0;
                 Instantiate(telepoint, player.transform.position, Quaternion.identity);
                 dest = player.transform.position;
@@ -79,6 +84,7 @@ public class EnemyTeleport : MonoBehaviour
         if (other.gameObject.layer == 12)
         {
             health -= ps.damage;
+            SoundFX.instance.playSound(hurtSound, transform, 1f);
         }
     }
 
@@ -89,6 +95,7 @@ public class EnemyTeleport : MonoBehaviour
             ps.invulne = true;
             ps.currentHealth -= System.Math.Max(80 - ps.armor, 0);
             ps.healthBar.SetHealth(ps.currentHealth);
+            SoundFX.instance.playSound(atkSound, transform, 1f);
         }
 
     }

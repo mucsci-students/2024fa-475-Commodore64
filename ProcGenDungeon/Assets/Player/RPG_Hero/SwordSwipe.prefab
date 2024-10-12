@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5010a95dfaed7f944911418d904d4623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atkSound: {fileID: 8300000, guid: f85a0f68fc30ffa468cf7d2eb1f52a56, type: 3}
   player: {fileID: 0}
   ps: {fileID: 0}
   mousepos: {x: 0, y: 0, z: 0}

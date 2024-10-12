@@ -5,6 +5,8 @@ using UnityEditor;
 
 public class projectile : MonoBehaviour
 {
+    [SerializeField] private AudioClip warpSound;
+    [SerializeField] private AudioClip firedSound;
     public GameObject player;
     public Player ps;
     public Vector3 offscreen;
@@ -55,6 +57,7 @@ public class projectile : MonoBehaviour
                 if (!overPit)
                 {
                     player.transform.position = transform.position;
+                    SoundFX.instance.playSound(warpSound, transform, 1f);
                 }
                 teleOffScreen();
             }
@@ -67,6 +70,7 @@ public class projectile : MonoBehaviour
                     isWarp = true;
                     transform.position = player.transform.position;
                     transform.localScale = scaling;
+                    SoundFX.instance.playSound(firedSound, transform, 1f);
                 }
             }
         }

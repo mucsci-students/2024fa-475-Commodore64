@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SlimeBossHalf : MonoBehaviour
 {
+    [SerializeField] private AudioClip atkSound;
+    [SerializeField] private AudioClip hurtSound;
     public GameObject player;
     public GameObject cloneq;
     public GameObject clonee;
@@ -61,6 +63,7 @@ public class SlimeBossHalf : MonoBehaviour
         if (other.gameObject.layer == 12)
         {
             health -= ps.damage;
+            SoundFX.instance.playSound(hurtSound, transform, 1f);
         }
         else if (other.gameObject.layer == 0 || other.gameObject.layer == 10 || other.gameObject.layer == 6)
         {
@@ -74,6 +77,7 @@ public class SlimeBossHalf : MonoBehaviour
             ps.invulne = true;
             ps.currentHealth -= System.Math.Max(100 - ps.armor, 0);
             ps.healthBar.SetHealth(ps.currentHealth);
+            SoundFX.instance.playSound(atkSound, transform, 1f);
         }
 
     }

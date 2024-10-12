@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyFollow : MonoBehaviour
 {
+    [SerializeField] private AudioClip atkSound;
+    [SerializeField] private AudioClip hurtSound;
     public GameObject player;
     public Player ps;
     public Vector3 playerDir;
@@ -101,6 +103,7 @@ public class EnemyFollow : MonoBehaviour
         if (other.gameObject.layer == 12)
         {
             health -= ps.damage;
+            SoundFX.instance.playSound(hurtSound, transform, 1f);
         }
     }
 
@@ -112,6 +115,7 @@ public class EnemyFollow : MonoBehaviour
             ps.invulne = true;
             ps.currentHealth -= System.Math.Max(50 - ps.armor, 0);
             ps.healthBar.SetHealth(ps.currentHealth);
+            SoundFX.instance.playSound(atkSound, transform, 1f);
         }
 
     }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyDash : MonoBehaviour
 {
+    [SerializeField] private AudioClip atkSound;
+    [SerializeField] private AudioClip hurtSound;
     public GameObject player;
     public Player ps;
     public Vector3 moveDir;
@@ -104,6 +106,7 @@ public class EnemyDash : MonoBehaviour
         if (other.gameObject.layer == 12)
         {
             health -= ps.damage;
+            SoundFX.instance.playSound(hurtSound, transform, 1f);
         }
     }
 
@@ -114,6 +117,7 @@ public class EnemyDash : MonoBehaviour
             ps.invulne = true;
             ps.currentHealth -= System.Math.Max(30 - ps.armor, 0);
             ps.healthBar.SetHealth(ps.currentHealth);
+            SoundFX.instance.playSound(atkSound, transform, 1f);
         }
 
     }

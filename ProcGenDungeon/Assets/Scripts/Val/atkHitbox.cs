@@ -5,7 +5,7 @@ using System;
 
 public class atkHitbox : MonoBehaviour
 {
-
+    [SerializeField] private AudioClip atkSound;
     public GameObject player;
     public Player ps;
     public Vector3 mousepos;
@@ -28,6 +28,11 @@ public class atkHitbox : MonoBehaviour
         }
 
         transform.rotation = Quaternion.Euler(0f, 0f, atkAngle);
+
+
+        SoundFX.instance.playSound(atkSound, transform, 1f);
+
+
         Destroy(gameObject, 0.2f);
     }
 

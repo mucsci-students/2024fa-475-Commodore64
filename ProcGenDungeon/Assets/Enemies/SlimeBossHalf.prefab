@@ -219,6 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6618458ceffd69e44b67fdfacf68481f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atkSound: {fileID: 8300000, guid: cac136d9bda06f4488b6e1e4a5fda609, type: 3}
+  hurtSound: {fileID: 8300000, guid: 96ead8e3bf3962f4a82eca8d3e3abeb1, type: 3}
   player: {fileID: 0}
   cloneq: {fileID: 7822278142656873169, guid: ace0377764fa7a947adcee780c7e5d7c, type: 3}
   clonee: {fileID: 7822278142656873169, guid: 56764afeb3a79bd4788b5d82e4a09139, type: 3}

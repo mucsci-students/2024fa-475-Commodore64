@@ -183,7 +183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67566efeab193924bacecee35ff58979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  warpSound: {fileID: 8300000, guid: 49e9b23f3dd611c4f80320102757c1e8, type: 3}
+  firedSound: {fileID: 8300000, guid: 796364a549c839f4c9cba4d841721353, type: 3}
   player: {fileID: 0}
+  ps: {fileID: 0}
   offscreen: {x: -22.42271, y: 0, z: 0}
   mousepos: {x: 0, y: 0, z: 0}
   setDir: {x: 0, y: 0, z: 0}
