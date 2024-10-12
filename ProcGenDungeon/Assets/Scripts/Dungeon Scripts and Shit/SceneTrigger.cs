@@ -24,8 +24,8 @@ public class SceneTrigger : MonoBehaviour
 
         yield return new WaitForSeconds(transitionTime);
 
-        player.transform.position = new Vector3(0f, 0f, 0f);
-
         SceneManager.LoadScene(levelIndex);
+
+        player.transform.position = new Vector3(0f, 0f, 0f);
     }
 }

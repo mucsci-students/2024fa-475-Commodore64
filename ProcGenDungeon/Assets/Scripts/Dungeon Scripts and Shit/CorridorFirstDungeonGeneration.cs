@@ -31,14 +31,23 @@ public class CorridorFirstDungeonGeneration : SimpleRandomWalkDungeonGenerator
 
         List<List<Vector2Int>> corridors = CreateCorridors(floorPositions, potentialRoomPositions);
 
+        //Debug.Log("Number of potential room positions: " + potentialRoomPositions.Count);
+
+        foreach(var rooms in potentialRoomPositions) {
+            Instantiate(skullSpawner, new Vector3(rooms.x, rooms.y, 0), Quaternion.identity);
+            Instantiate(zombieSpawner, new Vector3(rooms.x + 1, rooms.y - 1, 0), Quaternion.identity);
+            Instantiate(skeletonSpawner, new Vector3(rooms.x + 2, rooms.y - 2, 0), Quaternion.identity);
+        }
+
         HashSet<Vector2Int> roomPositions = CreateRooms(potentialRoomPositions);
 
         List<Vector2Int> deadEnds = FindAllDeadEnds(floorPositions);
 
-        CreateRoomsAtDeadEnd(deadEnds, roomPositions);
+        foreach (var deadEnd in deadEnds) {
+            Instantiate(bossPortal, new Vector3(deadEnd.x + 15, deadEnd.y + 15, 0), Quaternion.identity);
+        }
 
-        var positionLastDeadEnd = deadEnds[deadEnds.Count - 1];
-        Instantiate(bossPortal, new Vector3(positionLastDeadEnd.x + 15, positionLastDeadEnd.y + 15, 0), Quaternion.identity);
+        CreateRoomsAtDeadEnd(deadEnds, roomPositions);
 
         floorPositions.UnionWith(roomPositions);
 
@@ -58,7 +67,6 @@ public class CorridorFirstDungeonGeneration : SimpleRandomWalkDungeonGenerator
                 roomPositions.UnionWith(roomFloor);
             }
         }
-        
      }
 
      private List<Vector2Int> FindAllDeadEnds(HashSet<Vector2Int> floorPositions) {
@@ -97,15 +105,13 @@ public class CorridorFirstDungeonGeneration : SimpleRandomWalkDungeonGenerator
         HashSet<Vector2Int> roomPositions = new HashSet<Vector2Int>();
         int roomToCreateCount = Mathf.RoundToInt(potentialRoomPositions.Count * roomPercent);
 
-        List<Vector2Int> roomToCreate = potentialRoomPositions.OrderBy(x => Guid.NewGuid()).Take(roomToCreateCount).ToList();
-
+        List<Vector2Int> roomToCreate = potentialRoomPositions.OrderBy(x => Guid.NewGuid()).Take(roomToCreateCount).ToList(); 
         foreach(var roomPosition in roomToCreate) {
             var roomFloor = RunRandomWalk(randomWalkParameters, roomPosition);
             roomPositions.UnionWith(roomFloor);
-            Instantiate(skullSpawner, new Vector3(roomPosition.x, roomPosition.y, 0), Quaternion.identity);
-            Instantiate(zombieSpawner, new Vector3(roomPosition.x + 4, roomPosition.y, 0), Quaternion.identity);
-            Instantiate(skeletonSpawner, new Vector3(roomPosition.x + 9, roomPosition.y - 10, 0), Quaternion.identity);
         }
+
+        
 
         return roomPositions;
      }
@@ -122,6 +128,12 @@ public class CorridorFirstDungeonGeneration : SimpleRandomWalkDungeonGenerator
 
         return newCorridor;
      }
+
+     /*private void ClearSpawners() {
+        foreach (var enemySpawner in enemySpawners) {
+            Destroy(enemySpawner);
+        }
+     }*/
 
      /*private Vector2Int GetDirection90From(Vector2Int direction) {
         if(direction == Vector2Int.up) {

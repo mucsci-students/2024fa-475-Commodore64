@@ -21,6 +21,10 @@ public class EnemySpawner : MonoBehaviour
         SetTimeUntilSpawn();
     }
 
+    void Start() {
+        Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -29,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
         int numberOfEnemies = enemies.Length;
 
         timeUntilSpawn -= Time.deltaTime;
-        if (numberOfEnemies < 30) {
+        if (numberOfEnemies < 150) {
             if(timeUntilSpawn <= 0) {
                 Instantiate(enemyPrefab, transform.position, Quaternion.identity);
                 SetTimeUntilSpawn();

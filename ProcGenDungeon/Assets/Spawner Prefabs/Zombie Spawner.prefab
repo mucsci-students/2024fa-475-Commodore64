@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5548522080884302137}
   m_Layer: 0
   m_Name: Zombie Spawner
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1499666457538421300, guid: a735d5b1841fb2b40bcb41bc9564a65d, type: 3}
-  minSpawnTime: 25
+  minSpawnTime: 19
   maxSpawnTime: 25
