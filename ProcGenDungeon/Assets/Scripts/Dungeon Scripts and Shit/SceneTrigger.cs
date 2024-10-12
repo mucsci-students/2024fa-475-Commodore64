@@ -11,7 +11,7 @@ public class SceneTrigger : MonoBehaviour
 
     public float transitionTime = 1f;
 
-    public GameObject player;
+    public GameObject[] player;
 
     void OnTriggerEnter2D (Collider2D col) {
         if (col.CompareTag("Player")) {
@@ -26,6 +26,7 @@ public class SceneTrigger : MonoBehaviour
 
         SceneManager.LoadScene(levelIndex);
 
-        player.transform.position = new Vector3(0f, 0f, 0f);
+        player = GameObject.FindGameObjectsWithTag("Player");
+        player[0].transform.position = new Vector3(0f, 0f, 0f);
     }
 }

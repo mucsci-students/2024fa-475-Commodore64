@@ -7,6 +7,8 @@ public class PauseGame : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject PauseMenuUI;
+    public GameObject[] player;
+
     public void Pause()
     {
         if (Time.timeScale == 1)
@@ -25,7 +27,17 @@ public class PauseGame : MonoBehaviour
     {
         Time.timeScale = 1;
         PauseMenuUI.SetActive(false);
-        SceneManager.LoadScene("StartingRoom");
+        SceneManager.LoadScene(4);
+        player = GameObject.FindGameObjectsWithTag("Player");
+        player[0].transform.position = new Vector3(0f, 0f, 0f);
+
+        player[0].GetComponent<Player>().currentHealth = 100;
+        player[0].GetComponent<Player>().currentEnergy = 100;
+        player[0].GetComponent<Player>().isDead = false;
+        player[0].GetComponent<Animator>().enabled = true;
+        player[0].GetComponent<Animator>().SetBool("dead", false);
+        player[0].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Assets/Player/RPG_Hero/idle/idle_down_40x40_2.png");
+        player[0].GetComponent<Animator>().Play("IdleAnim");
     }
 
     public void Quit()
