@@ -79,9 +79,26 @@ public class Inventory
             }
         }
 
-        // Else add item to new slot
+        // Else add item to new slot and set max values by type
         foreach (InventorySlot slot in slots)
         {
+            switch (newItem.type)
+            {
+                case ItemType.WEAPON:
+                    slot.maxAllowed = 1;
+                    break;
+                case ItemType.ARMOR:
+                    slot.maxAllowed = 1;
+                    break;
+                case ItemType.COLLECTABLE:
+                    slot.maxAllowed = 10;
+                    break;
+                case ItemType.CONSUMABLE:
+                    slot.maxAllowed = 10;
+                    break;
+                default:
+                    break;
+            }
             if (slot.type == ItemType.NONE && slot.icon == null)
             {
                 slot.AddItem(newItem);

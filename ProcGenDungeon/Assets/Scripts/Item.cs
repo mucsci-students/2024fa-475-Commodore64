@@ -4,7 +4,7 @@ public class Item : MonoBehaviour
 {
     public Sprite icon; // Item icon
     public ItemType type;
-    public bool isColliding = false;
+    private bool isColliding = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isColliding) return;
@@ -31,4 +31,4 @@ public class Item : MonoBehaviour
     }
 }
 
-public enum ItemType { NONE, WEAPON, ARMOR, COLLECTABLE }
+public enum ItemType { NONE, WEAPON, ARMOR, COLLECTABLE, CONSUMABLE }
