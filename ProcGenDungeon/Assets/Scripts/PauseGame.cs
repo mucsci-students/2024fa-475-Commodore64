@@ -40,6 +40,7 @@ public class PauseGame : MonoBehaviour
         player[0].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Assets/Player/RPG_Hero/idle/idle_down_40x40_2.png");
         player[0].GetComponent<Animator>().Play("IdleAnim");
         player[0].GetComponent<Player>().inventory = new Inventory(18);
+        player[0].GetComponent<Player>().healthBar.SetHealth(100);
     }
 
     public void Quit()
