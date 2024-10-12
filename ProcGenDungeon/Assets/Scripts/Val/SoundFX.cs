@@ -12,6 +12,9 @@ public class SoundFX : MonoBehaviour
             instance = this;
         }
     }
+    void Start(){
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     public void playSound(AudioClip aclip, Transform spawnTransform, float volume){
         // spawn in oibject

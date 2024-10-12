@@ -106,7 +106,7 @@ public class EnemyDash : MonoBehaviour
         if (other.gameObject.layer == 12)
         {
             health -= ps.damage;
-            SoundFX.instance.playSound(hurtSound, transform, 1f);
+            SoundFX.instance.playSound(hurtSound, transform, .5f);
         }
     }
 

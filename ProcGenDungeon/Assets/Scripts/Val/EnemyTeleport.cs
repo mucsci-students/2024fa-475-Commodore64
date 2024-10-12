@@ -63,7 +63,7 @@ public class EnemyTeleport : MonoBehaviour
             }
             else
             {
-                SoundFX.instance.playSound(teleSound, transform, 1f);
+                SoundFX.instance.playSound(teleSound, transform, .5f);
                 timePassed = 0;
                 Instantiate(telepoint, player.transform.position, Quaternion.identity);
                 dest = player.transform.position;
@@ -84,7 +84,7 @@ public class EnemyTeleport : MonoBehaviour
         if (other.gameObject.layer == 12)
         {
             health -= ps.damage;
-            SoundFX.instance.playSound(hurtSound, transform, 1f);
+            SoundFX.instance.playSound(hurtSound, transform, .5f);
         }
     }
 

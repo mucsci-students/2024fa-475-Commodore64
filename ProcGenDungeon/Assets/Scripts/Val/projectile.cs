@@ -57,7 +57,7 @@ public class projectile : MonoBehaviour
                 if (!overPit)
                 {
                     player.transform.position = transform.position;
-                    SoundFX.instance.playSound(warpSound, transform, 1f);
+                    SoundFX.instance.playSound(warpSound, transform, .5f);
                 }
                 teleOffScreen();
             }
@@ -70,7 +70,7 @@ public class projectile : MonoBehaviour
                     isWarp = true;
                     transform.position = player.transform.position;
                     transform.localScale = scaling;
-                    SoundFX.instance.playSound(firedSound, transform, 1f);
+                    SoundFX.instance.playSound(firedSound, transform, .70f);
                 }
             }
         }
