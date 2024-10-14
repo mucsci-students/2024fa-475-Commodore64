@@ -232,8 +232,14 @@ public class Inventory
         healthEnergyPotions = GameObject.FindGameObjectsWithTag("HealthEnergy");
         int healthGain = 10;
         int energyGain = 0;
+        Sprite healthIcon;
+        healthIcon = healthPotions[0].GetComponent<ConsumableItem>().icon;
+        Sprite energyIcon;
+        energyIcon = energyPotions[0].GetComponent<ConsumableItem>().icon;
+        Sprite healthEnergyIcon;
+        healthEnergyIcon = healthEnergyPotions[0].GetComponent<ConsumableItem>().icon;
 
-        if (slots[index].type == ItemType.CONSUMABLE && player[0].GetComponent<Player>().currentHealth != player[0].GetComponent<Player>().maxHealth)
+        if (slots[index].type == ItemType.CONSUMABLE && player[0].GetComponent<Player>().currentHealth != player[0].GetComponent<Player>().maxHealth && slots[index].icon == healthIcon)
         {
             if (healthPotions.Length > 0)
             {
@@ -247,7 +253,7 @@ public class Inventory
             Remove(index);
         }
 
-        if (slots[index].type == ItemType.CONSUMABLE && player[0].GetComponent<Player>().currentEnergy != player[0].GetComponent<Player>().maxEnergy)
+        if (slots[index].type == ItemType.CONSUMABLE && player[0].GetComponent<Player>().currentEnergy != player[0].GetComponent<Player>().maxEnergy && slots[index].icon == energyIcon)
         {
             if (energyPotions.Length > 0)
             {
@@ -261,7 +267,7 @@ public class Inventory
             Remove(index);
         }
 
-        if (slots[index].type == ItemType.CONSUMABLE && player[0].GetComponent<Player>().currentHealth != player[0].GetComponent<Player>().maxHealth || player[0].GetComponent<Player>().currentEnergy != player[0].GetComponent<Player>().maxEnergy)
+        if (slots[index].type == ItemType.CONSUMABLE && player[0].GetComponent<Player>().currentHealth != player[0].GetComponent<Player>().maxHealth || player[0].GetComponent<Player>().currentEnergy != player[0].GetComponent<Player>().maxEnergy && slots[index].icon == healthEnergyIcon)
         {
             if (healthEnergyPotions.Length > 0)
             {
