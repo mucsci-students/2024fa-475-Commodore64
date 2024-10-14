@@ -44,7 +44,8 @@ public class projectile : MonoBehaviour
 
         transform.position += deltaPos;
 
-        if (Input.GetKeyDown(KeyCode.Q) && !ps.isDead)
+
+        if (Input.GetKeyDown(KeyCode.Q) && !ps.isDead && Time.timeScale != 0)
         {
             if (isWarp)
             {
