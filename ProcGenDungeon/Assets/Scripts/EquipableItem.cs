@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquippableItem : Item
+public class EquipableItem : Item
 {
     public int damage;
     public int armor;
     public EquipmentType equipmentType;
 }
 
-public enum EquipmentType { ARMOR, SWORD, HAMMER }
+public enum EquipmentType { NONE, ARMOR, SWORD, HAMMER }

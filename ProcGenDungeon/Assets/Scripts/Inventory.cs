@@ -11,13 +11,14 @@ public class Inventory
     [System.Serializable]
     public class InventorySlot
     {
-        public ItemType type;
-        public int count;
-        public int maxAllowed;
-        public Sprite icon;
+        public ItemType type; // type of item
+        public int count; // number of items in the slot
+        public int maxAllowed; // max items per slot
+        public Sprite icon; // sprite image
 
         public InventorySlot()
         {
+            // empty slot
             type = ItemType.NONE;
             count = 0;
             maxAllowed = 99;
@@ -37,9 +38,9 @@ public class Inventory
 
         public void AddItem(Item item)
         {
-            this.type = item.type;
-            this.icon = item.icon;
-            count++;
+            this.type = item.type; // slot type is item's type
+            this.icon = item.icon; // slot image is item's image
+            count++;               // increase number of items in that slot
             item.enabled = true;
         }
 
@@ -50,6 +51,7 @@ public class Inventory
                 count--;
                 if (count == 0)
                 {
+                    // empty slot and change to NONE type
                     icon = null;
                     type = ItemType.NONE;
                 }
@@ -57,9 +59,10 @@ public class Inventory
         }
     }
 
-    public List<InventorySlot> slots = new List<InventorySlot>();
+    public List<InventorySlot> slots = new List<InventorySlot>(); // list of slots
     public Inventory(int numSlots)
     {
+        // make a number of slots and add them to the slot list
         for (int i = 0; i < numSlots; i++)
         {
             InventorySlot slot = new InventorySlot();
@@ -69,11 +72,12 @@ public class Inventory
 
     public void Add(Item newItem)
     {
-        // If something matches current inventory
         foreach (InventorySlot slot in slots)
         {
+            // If something matches current inventory and the slot is not full of that item
             if (slot.type == newItem.type && slot.CanAddItem() && slot.icon == newItem.icon)
             {
+                // Add the item to the existing slot
                 slot.AddItem(newItem);
                 return;
             }
@@ -101,6 +105,7 @@ public class Inventory
             }
             if (slot.type == ItemType.NONE && slot.icon == null)
             {
+                // Add the first item to the slot
                 slot.AddItem(newItem);
                 return;
             }

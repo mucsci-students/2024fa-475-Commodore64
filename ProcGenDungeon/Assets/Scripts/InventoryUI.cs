@@ -10,6 +10,7 @@ public class InventoryUI : MonoBehaviour
     public GameObject equipmentUI;
     public Player player;
     public List<SlotUI> slots = new List<SlotUI>();
+    public List<EquipmentUI> equipmentSlots = new List<EquipmentUI>();
 
     void Start()
     {
@@ -41,6 +42,21 @@ public class InventoryUI : MonoBehaviour
                 else
                 {
                     slots[i].SetEmpty();
+                }
+            }
+        }
+
+        if (equipmentSlots.Count == player.equipment.slots.Count)
+        {
+            for (int i = 0; i < equipmentSlots.Count; i++)
+            {
+                if (player.equipment.slots[i].type != EquipmentType.NONE)
+                {
+                    equipmentSlots[i].SetItem(player.equipment.slots[i]);
+                }
+                else
+                {
+                    equipmentSlots[i].SetEmpty();
                 }
             }
         }
