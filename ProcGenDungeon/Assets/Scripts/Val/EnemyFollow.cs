@@ -50,6 +50,7 @@ public class EnemyFollow : MonoBehaviour
 
         if (health <= 0)
         {
+            ps.score += 200;
             Destroy(gameObject);
         }
         transform.GetChild(0).GetComponent<zomHealth>().hb = health;

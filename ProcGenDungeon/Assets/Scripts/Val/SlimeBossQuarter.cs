@@ -7,10 +7,12 @@ public class SlimeBossQuarter : MonoBehaviour
     [SerializeField] private AudioClip atkSound;
     [SerializeField] private AudioClip hurtSound;
     public GameObject player;
+    public GameObject tracker;
     public GameObject clonee;
     public Vector3 playerDir;
     public Vector3 setDir;
     public Player ps;
+    public BossTracker ts;
     public int health;
     public bool eigth;
     public bool changeDir;
@@ -19,6 +21,9 @@ public class SlimeBossQuarter : MonoBehaviour
     {
         player = GameObject.Find("Hero");
         ps = player.GetComponent<Player>();
+
+        tracker = GameObject.Find("BossTracker");
+        ts = tracker.GetComponent<BossTracker>();
 
         health = 200;
         eigth = false;
@@ -31,6 +36,8 @@ public class SlimeBossQuarter : MonoBehaviour
     {
         if (health <= 0)
         {
+            ts.bossesKilled += 1;
+            ps.score += 500;
             Destroy(gameObject);
         }
         transform.localScale = new Vector3(health / 20f, health / 20f, 0);

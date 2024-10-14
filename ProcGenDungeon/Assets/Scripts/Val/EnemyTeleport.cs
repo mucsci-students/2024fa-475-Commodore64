@@ -36,6 +36,7 @@ public class EnemyTeleport : MonoBehaviour
     {
         if (health <= 0)
         {
+            ps.score += 300;
             Destroy(gameObject);
         }
         transform.GetChild(0).GetComponent<zomHealth>().hb = health;

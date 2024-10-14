@@ -4,11 +4,13 @@ using UnityEngine;
 using System;
 using Unity.VisualScripting;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
   public GameObject attackHitbox;
   public Vector3 moveDirection;
+  public Text scoreText;
   public float moveSpeed;
   public int currentHealth;
   public int maxHealth = 100;
@@ -19,6 +21,7 @@ public class Player : MonoBehaviour
   public float timePassed;
   public int damage;
   public int armor;
+  public int score;
   Camera cam;
   public Animator myAnimator;
   public float curSpeed;
@@ -50,6 +53,7 @@ public class Player : MonoBehaviour
     transform.position = new Vector3(0f, 0f, 0f);
     moveSpeed = 7;
     timePassed = 0;
+    score = 0;
     moveDirection = new Vector3(0f, -1f, 0f);
     cd = true;
     damage = 20;
@@ -64,6 +68,7 @@ public class Player : MonoBehaviour
 
   void Update()
   {
+    scoreText.text = score.ToString();
     if (currentHealth <= 0 && !isDead)
     {
       StartCoroutine(deathTime());
