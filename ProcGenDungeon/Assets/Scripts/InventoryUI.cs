@@ -10,7 +10,6 @@ public class InventoryUI : MonoBehaviour
     public GameObject equipmentUI;
     public Player player;
     public List<SlotUI> slots = new List<SlotUI>();
-    public List<EquipmentUI> equipmentSlots = new List<EquipmentUI>();
 
     void Start()
     {
@@ -22,8 +21,11 @@ public class InventoryUI : MonoBehaviour
     {
         if (Input.GetButtonDown("Inventory")) // When F is pressed
         {
-            inventoryUI.SetActive(!inventoryUI.activeSelf);
-            equipmentUI.SetActive(!equipmentUI.activeSelf);
+            if (Time.timeScale != 0)
+            {
+                inventoryUI.SetActive(!inventoryUI.activeSelf);
+                equipmentUI.SetActive(!equipmentUI.activeSelf);
+            }
         }
         Refresh();
     }
@@ -45,26 +47,26 @@ public class InventoryUI : MonoBehaviour
                 }
             }
         }
-
-        if (equipmentSlots.Count == player.equipment.slots.Count)
-        {
-            for (int i = 0; i < equipmentSlots.Count; i++)
-            {
-                if (player.equipment.slots[i].type != EquipmentType.NONE)
-                {
-                    equipmentSlots[i].SetItem(player.equipment.slots[i]);
-                }
-                else
-                {
-                    equipmentSlots[i].SetEmpty();
-                }
-            }
-        }
     }
 
     public void Remove(int slotIndex)
     {
         player.inventory.Remove(slotIndex);
+        Refresh();
+    }
+    public void Equip(int slotIndex)
+    {
+        player.inventory.Equip(slotIndex);
+        Refresh();
+    }
+    public void UnequipWeapon(int slotIndex)
+    {
+        player.inventory.UnequipWeapon();
+        Refresh();
+    }
+    public void UnequipArmor(int slotIndex)
+    {
+        player.inventory.UnequipArmor();
         Refresh();
     }
 }
