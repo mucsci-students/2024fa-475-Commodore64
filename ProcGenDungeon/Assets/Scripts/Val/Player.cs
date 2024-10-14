@@ -38,8 +38,8 @@ public class Player : MonoBehaviour
 
   private void Awake()
   {
-    // Initializes Inventory to 18 slots and 2 equipment slots
-    inventory = new Inventory(20);
+    // Initializes Inventory to 18 slots and 3 equipment slots
+    inventory = new Inventory(21);
   }
 
   // Start is called before the first frame update

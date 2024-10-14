@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 841241833732853798}
   m_Layer: 7
   m_Name: Gold Key_0
-  m_TagString: Untagged
+  m_TagString: Key
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4269881429613397319}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.377399, y: -0.77919066, z: 0.059413437}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: -1306627091, guid: d71bc61ab47614aa2aef0571ee40fd35, type: 3}
-  type: 3
+  type: 4
 --- !u!58 &841241833732853798
 CircleCollider2D:
   m_ObjectHideFlags: 0

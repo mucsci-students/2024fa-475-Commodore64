@@ -7,8 +7,14 @@ TagManager:
   - Dungeon
   - Enemy
   - Pits
-  - Item
   - Spawner
+  - Sword
+  - Hammer
+  - Armor
+  - HealthPotion
+  - EnergyPotion
+  - HealthEnergy
+  - Key
   layers:
   - Default
   - TransparentFX

@@ -69,4 +69,9 @@ public class InventoryUI : MonoBehaviour
         player.inventory.UnequipArmor();
         Refresh();
     }
+    public void UseConsumable(int slotIndex)
+    {
+        player.inventory.UseConsumable(slotIndex);
+        Refresh();
+    }
 }

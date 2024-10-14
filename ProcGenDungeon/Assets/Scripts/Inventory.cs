@@ -62,6 +62,15 @@ public class Inventory
     }
 
     public List<InventorySlot> slots = new List<InventorySlot>(); // list of slots
+    public GameObject[] swords;
+    public GameObject[] hammers;
+    public GameObject[] armors;
+    public GameObject[] player;
+    public GameObject[] healthPotions;
+    public GameObject[] energyPotions;
+    public GameObject[] healthEnergyPotions;
+    public GameObject[] keys;
+
     public Inventory(int numSlots)
     {
         // make a number of slots and add them to the slot list
@@ -90,7 +99,10 @@ public class Inventory
         {
             switch (newItem.type)
             {
-                case ItemType.WEAPON:
+                case ItemType.SWORD:
+                    slot.maxAllowed = 1;
+                    break;
+                case ItemType.HAMMER:
                     slot.maxAllowed = 1;
                     break;
                 case ItemType.ARMOR:
@@ -116,18 +128,18 @@ public class Inventory
 
     public void Remove(int index)
     {
-        if (slots[index].isEquippedWeapon && slots[19].isEquippedWeapon)
+        if (slots[index].isEquippedWeapon && slots[18].isEquippedWeapon)
         {
             UnequipWeapon();
             slots[index].isEquippedWeapon = false;
-            slots[19].isEquippedWeapon = false;
+            slots[18].isEquippedWeapon = false;
 
         }
-        if (slots[index].isEquippedArmor && slots[18].isEquippedArmor)
+        if (slots[index].isEquippedArmor && slots[19].isEquippedArmor)
         {
             UnequipArmor();
             slots[index].isEquippedArmor = false;
-            slots[18].isEquippedArmor = false;
+            slots[19].isEquippedArmor = false;
 
         }
         slots[index].RemoveItem();
@@ -135,30 +147,135 @@ public class Inventory
 
     public void Equip(int index)
     {
-        if (slots[index].type == ItemType.WEAPON)
+        swords = GameObject.FindGameObjectsWithTag("Sword");
+        hammers = GameObject.FindGameObjectsWithTag("Hammer");
+        armors = GameObject.FindGameObjectsWithTag("Armor");
+        player = GameObject.FindGameObjectsWithTag("Player");
+        int damage = 0;
+        int armor = 0;
+        if (slots[index].type == ItemType.SWORD)
         {
-            slots[19].icon = slots[index].icon;
-            slots[19].type = slots[index].type;
-            slots[index].isEquippedWeapon = true;
-            slots[19].isEquippedWeapon = true;
-        }
-        if (slots[index].type == ItemType.ARMOR)
-        {
+            if (swords.Length > 0)
+            {
+                foreach (var sword in swords)
+                {
+                    damage = sword.GetComponent<EquipableItem>().damage;
+                }
+            }
+
             slots[18].icon = slots[index].icon;
             slots[18].type = slots[index].type;
+            slots[20].icon = slots[18].icon;
+            slots[20].type = slots[18].type;
+            slots[index].isEquippedWeapon = true;
+            slots[18].isEquippedWeapon = true;
+            player[0].GetComponent<Player>().damage = damage;
+        }
+
+        if (slots[index].type == ItemType.HAMMER)
+        {
+            if (hammers.Length > 0)
+            {
+                foreach (var hammer in hammers)
+                {
+                    damage = hammer.GetComponent<EquipableItem>().damage;
+                }
+            }
+
+            slots[18].icon = slots[index].icon;
+            slots[18].type = slots[index].type;
+            slots[20].icon = slots[18].icon;
+            slots[20].type = slots[18].type;
+            slots[index].isEquippedWeapon = true;
+            slots[18].isEquippedWeapon = true;
+            player[0].GetComponent<Player>().damage = damage;
+        }
+
+        if (slots[index].type == ItemType.ARMOR)
+        {
+            if (armors.Length > 0)
+            {
+                foreach (var armorItem in armors)
+                {
+                    armor = armorItem.GetComponent<EquipableItem>().armor;
+                }
+            }
+            slots[19].icon = slots[index].icon;
+            slots[19].type = slots[index].type;
             slots[index].isEquippedArmor = true;
-            slots[18].isEquippedArmor = true;
+            slots[19].isEquippedArmor = true;
+            player[0].GetComponent<Player>().armor = armor;
         }
     }
 
     public void UnequipWeapon()
     {
-        slots[19].icon = null;
-        slots[19].type = ItemType.NONE;
+        player = GameObject.FindGameObjectsWithTag("Player");
+        player[0].GetComponent<Player>().damage = 20;
+        slots[18].icon = null;
+        slots[18].type = ItemType.NONE;
+        slots[20].icon = null;
+        slots[20].type = ItemType.NONE;
     }
     public void UnequipArmor()
     {
-        slots[18].icon = null;
-        slots[18].type = ItemType.NONE;
+        player = GameObject.FindGameObjectsWithTag("Player");
+        player[0].GetComponent<Player>().armor = 10;
+        slots[19].icon = null;
+        slots[19].type = ItemType.NONE;
+    }
+
+    public void UseConsumable(int index)
+    {
+        healthPotions = GameObject.FindGameObjectsWithTag("HealthPotion");
+        energyPotions = GameObject.FindGameObjectsWithTag("EnergyPotion");
+        healthEnergyPotions = GameObject.FindGameObjectsWithTag("HealthEnergy");
+        int healthGain = 10;
+        int energyGain = 0;
+
+        if (slots[index].type == ItemType.CONSUMABLE && player[0].GetComponent<Player>().currentHealth != player[0].GetComponent<Player>().maxHealth)
+        {
+            if (healthPotions.Length > 0)
+            {
+                foreach (var healthPotion in healthPotions)
+                {
+                    healthGain = healthPotion.GetComponent<ConsumableItem>().healthGain;
+                }
+            }
+            player[0].GetComponent<Player>().currentHealth = System.Math.Min(player[0].GetComponent<Player>().currentHealth + healthGain, player[0].GetComponent<Player>().maxHealth);
+            player[0].GetComponent<Player>().healthBar.SetHealth(player[0].GetComponent<Player>().currentHealth);
+            Remove(index);
+        }
+
+        if (slots[index].type == ItemType.CONSUMABLE && player[0].GetComponent<Player>().currentEnergy != player[0].GetComponent<Player>().maxEnergy)
+        {
+            if (energyPotions.Length > 0)
+            {
+                foreach (var energyPotion in energyPotions)
+                {
+                    energyGain = energyPotion.GetComponent<ConsumableItem>().energyGain;
+                }
+            }
+            player[0].GetComponent<Player>().currentEnergy = System.Math.Min(player[0].GetComponent<Player>().currentEnergy + energyGain, player[0].GetComponent<Player>().maxEnergy);
+            player[0].GetComponent<Player>().energyBar.SetEnergy(player[0].GetComponent<Player>().currentEnergy);
+            Remove(index);
+        }
+
+        if (slots[index].type == ItemType.CONSUMABLE && player[0].GetComponent<Player>().currentHealth != player[0].GetComponent<Player>().maxHealth || player[0].GetComponent<Player>().currentEnergy != player[0].GetComponent<Player>().maxEnergy)
+        {
+            if (healthEnergyPotions.Length > 0)
+            {
+                foreach (var healthEnergyPotion in healthEnergyPotions)
+                {
+                    healthGain = healthEnergyPotion.GetComponent<ConsumableItem>().healthGain;
+                    energyGain = healthEnergyPotion.GetComponent<ConsumableItem>().energyGain;
+                }
+            }
+            player[0].GetComponent<Player>().currentHealth = System.Math.Min(player[0].GetComponent<Player>().currentHealth + healthGain, player[0].GetComponent<Player>().maxHealth);
+            player[0].GetComponent<Player>().currentEnergy = System.Math.Min(player[0].GetComponent<Player>().currentEnergy + energyGain, player[0].GetComponent<Player>().maxEnergy);
+            player[0].GetComponent<Player>().healthBar.SetHealth(player[0].GetComponent<Player>().currentHealth);
+            player[0].GetComponent<Player>().energyBar.SetEnergy(player[0].GetComponent<Player>().currentEnergy);
+            Remove(index);
+        }
     }
 }
