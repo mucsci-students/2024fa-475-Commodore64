@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,12 +29,22 @@ public class EnergyBar : MonoBehaviour
             slider.value = 0;
         }
     }
+    public void increaceEnergy(int value)
+    {
+        slider.value += value;
+        if (slider.value > 100)
+        {
+            slider.value = 100;
+        }
+    }
 
-    void Update() {
+    void Update()
+    {
         timeUntilRegen -= Time.deltaTime;
 
-        if(timeUntilRegen <= 0) {
-            slider.value += 5;
+        if (timeUntilRegen <= 0)
+        {
+            increaceEnergy(5);
             SetTimeUntilRegen();
         }
     }
@@ -43,7 +54,8 @@ public class EnergyBar : MonoBehaviour
         return (int)slider.value;
     }
 
-    private void SetTimeUntilRegen() {
+    private void SetTimeUntilRegen()
+    {
         timeUntilRegen = 3f;
     }
 }

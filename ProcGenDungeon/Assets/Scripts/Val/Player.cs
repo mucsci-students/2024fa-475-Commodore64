@@ -68,6 +68,7 @@ public class Player : MonoBehaviour
 
   void Update()
   {
+    this.currentEnergy = energyBar.getEnergy();
     scoreText.text = score.ToString();
     if (currentHealth <= 0 && !isDead)
     {
