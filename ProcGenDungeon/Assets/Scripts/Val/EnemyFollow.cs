@@ -29,7 +29,7 @@ public class EnemyFollow : MonoBehaviour
         left = new Vector3(-10f, 10f, 0f);
         health = 100;
         timePassed = 0;
-        moveSpeed = 1.5f;
+        moveSpeed = 5f;
         agro = false;
         hit = false;
         randDir = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);

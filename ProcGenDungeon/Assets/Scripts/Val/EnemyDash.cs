@@ -61,7 +61,7 @@ public class EnemyDash : MonoBehaviour
             }
             else if (timePassed < 2)
             {
-                moveSpeed = 5;
+                moveSpeed = 10;
             }
             else if (timePassed < 4)
             {
