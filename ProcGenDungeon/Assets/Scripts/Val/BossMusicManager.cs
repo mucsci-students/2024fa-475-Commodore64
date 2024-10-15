@@ -13,7 +13,7 @@ public class BossMusicManager : MonoBehaviour
     public BossTracker bts;
     public Text scoreText;
     public bool started;
-    // Start is called before the first frame update
+
     void Start()
     {
         player = GameObject.Find("Hero");
@@ -25,10 +25,10 @@ public class BossMusicManager : MonoBehaviour
         started = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(bts.deadBoss && !started){
+        if (bts.deadBoss && !started)
+        {
             started = true;
             scoreText.text = player.GetComponent<Player>().score.ToString();
             scoreText.transform.localScale = new Vector3(1f, 1f, 1f);
@@ -37,6 +37,5 @@ public class BossMusicManager : MonoBehaviour
             Destroy(bossDeadSound, 3f);
             victoryMusic.GetComponent<AudioSource>().PlayDelayed(3f);
         }
-        
     }
 }

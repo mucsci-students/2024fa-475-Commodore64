@@ -17,7 +17,7 @@ public class EnemyDash : MonoBehaviour
     public Vector3 left;
     public Vector3 randDir;
     public bool agro;
-    // Start is called before the first frame update
+
     void Start()
     {
         health = 50;

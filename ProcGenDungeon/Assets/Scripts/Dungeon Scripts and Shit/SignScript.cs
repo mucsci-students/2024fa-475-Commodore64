@@ -18,17 +18,16 @@ public class SignScript : MonoBehaviour
     [SerializeField]
     private float timeUntilSignDisappears = 3f;
 
-    // Start is called before the first frame update
     void Start()
     {
         dialogueBox.SetActive(false);
     }
 
-    void Awake()  {
+    void Awake()
+    {
         timeUntilSignDisappears = 3f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         /*if(playerInRange) {
@@ -41,22 +40,27 @@ public class SignScript : MonoBehaviour
         }*/
 
         timeUntilSignDisappears -= Time.deltaTime;
-        if(timeUntilSignDisappears <= 0) {
+        if (timeUntilSignDisappears <= 0)
+        {
             dialogueBox.SetActive(false);
             timeUntilSignDisappears = 3f;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col) {
-        if (col.CompareTag("Player")) {
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Player"))
+        {
             playerInRange = true;
             dialogueBox.SetActive(true);
             dialogueText.text = dialogue;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D col) {
-        if(col.CompareTag("Player")) {
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.CompareTag("Player"))
+        {
             playerInRange = false;
             dialogueBox.SetActive(false);
         }

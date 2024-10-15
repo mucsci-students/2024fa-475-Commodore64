@@ -12,12 +12,16 @@ public class SlotUI : MonoBehaviour
     // Putting Item in corresponding slot
     public void SetItem(Inventory.InventorySlot slot)
     {
+        // Make sure that slot has an element
         if (slot != null)
         {
+            // enable that icon, and make the remove button interactable
             itemIcon.sprite = slot.icon;
             itemIcon.color = new Color(1, 1, 1, 1);
             itemIcon.enabled = true;
             removeButton.interactable = true;
+
+            // set counter in the corner of the item box
             if (slot.count == 0)
             {
                 quantityText.text = "";
@@ -32,10 +36,11 @@ public class SlotUI : MonoBehaviour
     // Empty Slots setting
     public void SetEmpty()
     {
+        // disable that icon, and make the remove button not interactable
         itemIcon.enabled = false;
         itemIcon.sprite = null;
         itemIcon.color = new Color(1, 1, 1, 0);
-        quantityText.text = "";
+        quantityText.text = ""; // empty counter in the corner of the item box
         removeButton.interactable = false;
     }
 }

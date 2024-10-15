@@ -18,8 +18,6 @@ public class projectile : MonoBehaviour
     public bool isWarp;
     public bool overPit;
 
-    // Start is called before the first frame update
-
     void Start()
     {
         player = GameObject.Find("Hero");
@@ -33,7 +31,6 @@ public class projectile : MonoBehaviour
         overPit = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -43,7 +40,6 @@ public class projectile : MonoBehaviour
         deltaPos = setDir * movespeed * Time.deltaTime;
 
         transform.position += deltaPos;
-
 
         if (Input.GetKeyDown(KeyCode.Q) && !ps.isDead && Time.timeScale != 0)
         {

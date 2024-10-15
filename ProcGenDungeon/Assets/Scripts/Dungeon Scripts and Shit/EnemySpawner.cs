@@ -15,17 +15,16 @@ public class EnemySpawner : MonoBehaviour
 
     private float timeUntilSpawn;
 
-    // Start is called before the first frame update
     void Awake()
     {
         SetTimeUntilSpawn();
     }
 
-    void Start() {
+    void Start()
+    {
         Instantiate(enemyPrefab, transform.position, Quaternion.identity);
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -33,16 +32,19 @@ public class EnemySpawner : MonoBehaviour
         int numberOfEnemies = enemies.Length;
 
         timeUntilSpawn -= Time.deltaTime;
-        if (numberOfEnemies < 150) {
-            if(timeUntilSpawn <= 0) {
+        if (numberOfEnemies < 150)
+        {
+            if (timeUntilSpawn <= 0)
+            {
                 Instantiate(enemyPrefab, transform.position, Quaternion.identity);
                 SetTimeUntilSpawn();
             }
         }
-        
+
     }
 
-    private void SetTimeUntilSpawn() {
+    private void SetTimeUntilSpawn()
+    {
         timeUntilSpawn = Random.Range(minSpawnTime, maxSpawnTime);
     }
 }

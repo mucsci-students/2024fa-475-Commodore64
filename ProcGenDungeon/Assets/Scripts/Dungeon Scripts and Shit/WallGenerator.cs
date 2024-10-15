@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class WallGenerator 
+public static class WallGenerator
 {
     public static void CreateWalls(HashSet<Vector2Int> floorPositions, TilemapVisualizer tilemapVisualizer)
     {
@@ -13,14 +13,20 @@ public static class WallGenerator
         CreateCornerWalls(tilemapVisualizer, cornerWallPositions, floorPositions);
     }
 
-    private static void CreateCornerWalls(TilemapVisualizer tilemapVisualizer, HashSet<Vector2Int> cornerWallPositions, HashSet<Vector2Int> floorPositions) {
-        foreach(var position in cornerWallPositions) {
+    private static void CreateCornerWalls(TilemapVisualizer tilemapVisualizer, HashSet<Vector2Int> cornerWallPositions, HashSet<Vector2Int> floorPositions)
+    {
+        foreach (var position in cornerWallPositions)
+        {
             string neighborsBinaryType = "";
-            foreach(var direction in Direction2D.eightDirectionsList) {
+            foreach (var direction in Direction2D.eightDirectionsList)
+            {
                 var neighborPosition = position + direction;
-                if(floorPositions.Contains(neighborPosition)) {
+                if (floorPositions.Contains(neighborPosition))
+                {
                     neighborsBinaryType += "1";
-                } else {
+                }
+                else
+                {
                     neighborsBinaryType += "0";
                 }
             }
@@ -28,15 +34,20 @@ public static class WallGenerator
         }
     }
 
-    private static void CreateBasicWall(TilemapVisualizer tilemapVisualizer, HashSet<Vector2Int> basicWallPositions, HashSet<Vector2Int> floorPositions) {
+    private static void CreateBasicWall(TilemapVisualizer tilemapVisualizer, HashSet<Vector2Int> basicWallPositions, HashSet<Vector2Int> floorPositions)
+    {
         foreach (var position in basicWallPositions)
         {
             string neighborsBinaryType = "";
-            foreach(var direction in Direction2D.cardinalDirectionsList) {
+            foreach (var direction in Direction2D.cardinalDirectionsList)
+            {
                 var neighborPosition = position + direction;
-                if(floorPositions.Contains(neighborPosition)) {
+                if (floorPositions.Contains(neighborPosition))
+                {
                     neighborsBinaryType += "1";
-                } else {
+                }
+                else
+                {
                     neighborsBinaryType += "0";
                 }
             }

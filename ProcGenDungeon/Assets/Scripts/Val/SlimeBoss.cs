@@ -20,7 +20,7 @@ public class SlimeBoss : MonoBehaviour
     public bool quarter;
     public bool eigth;
     public bool changeDir;
-    // Start is called before the first frame update
+
     void Start()
     {
         player = GameObject.Find("Hero");
@@ -38,7 +38,6 @@ public class SlimeBoss : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (health <= 0)

@@ -62,14 +62,14 @@ public class Inventory
     }
 
     public List<InventorySlot> slots = new List<InventorySlot>(); // list of slots
-    public GameObject[] swords;
-    public GameObject[] hammers;
-    public GameObject[] armors;
-    public GameObject[] player;
-    public GameObject[] healthPotions;
-    public GameObject[] energyPotions;
-    public GameObject[] healthEnergyPotions;
-    public GameObject[] keys;
+    public GameObject[] swords; // list of swords in scene
+    public GameObject[] hammers; // list of hammers in scene
+    public GameObject[] armors; // list of armors in scene
+    public GameObject[] player; // list of player(s) in scene
+    public GameObject[] healthPotions; // list of healthPotions in scene
+    public GameObject[] energyPotions; // list of energyPotions in scene
+    public GameObject[] healthEnergyPotions; // list of healthEnergyPotions in scene
+    public GameObject[] keys; // list of keys in scene
 
     public Inventory(int numSlots)
     {
@@ -97,6 +97,7 @@ public class Inventory
         // Else add item to new slot and set max values by type
         foreach (InventorySlot slot in slots)
         {
+            // check item's type to determine maxAllowed
             switch (newItem.type)
             {
                 case ItemType.SWORD:
@@ -134,6 +135,7 @@ public class Inventory
 
     public void Remove(int index)
     {
+        // if weapon is equipped when remove is called, unequip weapon
         if (slots[index].isEquippedWeapon && slots[18].isEquippedWeapon)
         {
             UnequipWeapon();
@@ -141,6 +143,8 @@ public class Inventory
             slots[18].isEquippedWeapon = false;
 
         }
+
+        // if armor is equipped when remove is called, unequip armor
         if (slots[index].isEquippedArmor && slots[19].isEquippedArmor)
         {
             UnequipArmor();
@@ -148,74 +152,92 @@ public class Inventory
             slots[19].isEquippedArmor = false;
 
         }
+
+        // remove the item
         slots[index].RemoveItem();
     }
 
     public void Equip(int index)
     {
+        // find all equipable items
         swords = GameObject.FindGameObjectsWithTag("Sword");
         hammers = GameObject.FindGameObjectsWithTag("Hammer");
         armors = GameObject.FindGameObjectsWithTag("Armor");
         player = GameObject.FindGameObjectsWithTag("Player");
         int damage = 0;
         int armor = 0;
+
+        // if it is a sword
         if (slots[index].type == ItemType.SWORD)
         {
+            // check items in scene to determine if it exists
             if (swords.Length > 0)
             {
                 foreach (var sword in swords)
                 {
+                    //get weapon's damage
                     damage = sword.GetComponent<EquipableItem>().damage;
                 }
             }
 
+            // set the slot's data and the equip slot's data
             slots[18].icon = slots[index].icon;
             slots[18].type = slots[index].type;
             slots[20].icon = slots[18].icon;
             slots[20].type = slots[18].type;
             slots[index].isEquippedWeapon = true;
             slots[18].isEquippedWeapon = true;
-            player[0].GetComponent<Player>().damage = damage;
+            player[0].GetComponent<Player>().damage = damage; // apply damage
         }
 
+        // if it is a hammer
         if (slots[index].type == ItemType.HAMMER)
         {
+            // check items in scene to determine if it exists
             if (hammers.Length > 0)
             {
                 foreach (var hammer in hammers)
                 {
+                    //get weapon's damage
                     damage = hammer.GetComponent<EquipableItem>().damage;
                 }
             }
 
+            // set the slot's data and the equip slot's data
             slots[18].icon = slots[index].icon;
             slots[18].type = slots[index].type;
             slots[20].icon = slots[18].icon;
             slots[20].type = slots[18].type;
             slots[index].isEquippedWeapon = true;
             slots[18].isEquippedWeapon = true;
-            player[0].GetComponent<Player>().damage = damage;
+            player[0].GetComponent<Player>().damage = damage; // apply damage
         }
 
+        // if it is armor
         if (slots[index].type == ItemType.ARMOR)
         {
+            // check items in scene to determine if it exists
             if (armors.Length > 0)
             {
                 foreach (var armorItem in armors)
                 {
+                    // get armor's armor value
                     armor = armorItem.GetComponent<EquipableItem>().armor;
                 }
             }
+
+            // set the slot's data
             slots[19].icon = slots[index].icon;
             slots[19].type = slots[index].type;
             slots[index].isEquippedArmor = true;
             slots[19].isEquippedArmor = true;
-            player[0].GetComponent<Player>().armor = armor;
+            player[0].GetComponent<Player>().armor = armor; // apply armor
         }
     }
 
     public void UnequipWeapon()
     {
+        // empty slots for the weapon and reduce damage to base
         player = GameObject.FindGameObjectsWithTag("Player");
         player[0].GetComponent<Player>().damage = 20;
         slots[18].icon = null;
@@ -225,6 +247,7 @@ public class Inventory
     }
     public void UnequipArmor()
     {
+        // empty slot for the armor and reduce armor to base
         player = GameObject.FindGameObjectsWithTag("Player");
         player[0].GetComponent<Player>().armor = 10;
         slots[19].icon = null;
@@ -233,11 +256,14 @@ public class Inventory
 
     public void UseConsumable(int index)
     {
+        // find all consumables in scene
         healthPotions = GameObject.FindGameObjectsWithTag("HealthPotion");
         energyPotions = GameObject.FindGameObjectsWithTag("EnergyPotion");
         healthEnergyPotions = GameObject.FindGameObjectsWithTag("HealthEnergy");
         int healthGain = 10;
         int energyGain = 0;
+
+        // gather icons for the corresponding potions
         Sprite healthIcon;
         healthIcon = healthPotions[0].GetComponent<ConsumableItem>().icon;
         Sprite energyIcon;
@@ -245,6 +271,7 @@ public class Inventory
         Sprite healthEnergyIcon;
         healthEnergyIcon = healthEnergyPotions[0].GetComponent<ConsumableItem>().icon;
 
+        // check for health potion and if it can be used
         if (slots[index].type == ItemType.HEALTH && player[0].GetComponent<Player>().currentHealth != player[0].GetComponent<Player>().maxHealth && slots[index].icon == healthIcon)
         {
             if (healthPotions.Length > 0)
@@ -254,11 +281,14 @@ public class Inventory
                     healthGain = healthPotion.GetComponent<ConsumableItem>().healthGain;
                 }
             }
+
+            // add health to the player
             player[0].GetComponent<Player>().currentHealth = System.Math.Min(player[0].GetComponent<Player>().currentHealth + healthGain, player[0].GetComponent<Player>().maxHealth);
             player[0].GetComponent<Player>().healthBar.SetHealth(player[0].GetComponent<Player>().currentHealth);
             Remove(index);
         }
 
+        // check for energy potion and if it can be used
         if (slots[index].type == ItemType.ENERGY && player[0].GetComponent<Player>().currentEnergy != player[0].GetComponent<Player>().maxEnergy && slots[index].icon == energyIcon)
         {
             if (energyPotions.Length > 0)
@@ -268,11 +298,14 @@ public class Inventory
                     energyGain = energyPotion.GetComponent<ConsumableItem>().energyGain;
                 }
             }
+
+            // add energy to the player
             player[0].GetComponent<Player>().currentEnergy = System.Math.Min(player[0].GetComponent<Player>().currentEnergy + energyGain, player[0].GetComponent<Player>().maxEnergy);
             player[0].GetComponent<Player>().energyBar.SetEnergy(player[0].GetComponent<Player>().currentEnergy);
             Remove(index);
         }
 
+        // check for healthEnergy potion and if it can be used
         if (slots[index].type == ItemType.HEALTHENERGY && player[0].GetComponent<Player>().currentHealth != player[0].GetComponent<Player>().maxHealth || player[0].GetComponent<Player>().currentEnergy != player[0].GetComponent<Player>().maxEnergy && slots[index].icon == healthEnergyIcon)
         {
             if (healthEnergyPotions.Length > 0)
@@ -283,6 +316,8 @@ public class Inventory
                     energyGain = healthEnergyPotion.GetComponent<ConsumableItem>().energyGain;
                 }
             }
+
+            // add health and energy to the player
             player[0].GetComponent<Player>().currentHealth = System.Math.Min(player[0].GetComponent<Player>().currentHealth + healthGain, player[0].GetComponent<Player>().maxHealth);
             player[0].GetComponent<Player>().currentEnergy = System.Math.Min(player[0].GetComponent<Player>().currentEnergy + energyGain, player[0].GetComponent<Player>().maxEnergy);
             player[0].GetComponent<Player>().healthBar.SetHealth(player[0].GetComponent<Player>().currentHealth);

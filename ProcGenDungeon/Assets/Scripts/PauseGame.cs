@@ -11,13 +11,16 @@ public class PauseGame : MonoBehaviour
 
     public void Pause()
     {
+        // if not paused
         if (Time.timeScale == 1)
         {
+            // pause and activate pause menu
             Time.timeScale = 0;
             PauseMenuUI.SetActive(true);
         }
         else
         {
+            // if paused, resume game and remove pause menu
             Time.timeScale = 1;
             PauseMenuUI.SetActive(false);
         }
@@ -25,6 +28,8 @@ public class PauseGame : MonoBehaviour
 
     public void Restart()
     {
+        // Reset every player and game element to base values
+        // including time, position, score, health and energy, inventory, etc.
         Time.timeScale = 1;
         PauseMenuUI.SetActive(false);
         SceneManager.LoadScene("Restart Room");
@@ -41,6 +46,7 @@ public class PauseGame : MonoBehaviour
         player[0].GetComponent<Animator>().Play("IdleAnim");
         player[0].GetComponent<Player>().inventory = new Inventory(21);
         player[0].GetComponent<Player>().healthBar.SetHealth(100);
+        player[0].GetComponent<Player>().energyBar.SetEnergy(100);
     }
 
     public void Quit()

@@ -11,7 +11,7 @@ public class atkHitbox : MonoBehaviour
     public Vector3 mousepos;
     public Vector3 atkDir;
     public float atkAngle;
-    // Start is called before the first frame update
+
     void Start()
     {
         player = GameObject.Find("Hero");
@@ -36,10 +36,7 @@ public class atkHitbox : MonoBehaviour
         Destroy(gameObject, 0.2f);
     }
 
-    // Update is called once per frame
     void Update()
     {
     }
-
-
 }

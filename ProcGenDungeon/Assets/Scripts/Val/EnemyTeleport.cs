@@ -18,7 +18,6 @@ public class EnemyTeleport : MonoBehaviour
     public Vector3 playerDir;
     public bool agro;
 
-    // Start is called before the first frame update
     void Start()
     {
         health = 200;
@@ -31,7 +30,6 @@ public class EnemyTeleport : MonoBehaviour
         agro = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (health <= 0)
@@ -60,7 +58,7 @@ public class EnemyTeleport : MonoBehaviour
             else if (timePassed < 2)
             {
                 transform.position = dest;
-                
+
             }
             else
             {

@@ -7,7 +7,6 @@ public class KillBox : MonoBehaviour
     public GameObject player;
     public Player ps;
 
-    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Hero");

@@ -14,7 +14,7 @@ public class SlimeBossEith : MonoBehaviour
     public BossTracker ts;
     public int health;
     public bool changeDir;
-    // Start is called before the first frame update
+
     void Start()
     {
         player = GameObject.Find("Hero");
@@ -28,7 +28,6 @@ public class SlimeBossEith : MonoBehaviour
         changeDir = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (health <= 0)

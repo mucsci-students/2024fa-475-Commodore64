@@ -4,7 +4,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public Sprite icon; // Item icon
-    public ItemType type;
+    public ItemType type; // Item type
     private bool isColliding = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
