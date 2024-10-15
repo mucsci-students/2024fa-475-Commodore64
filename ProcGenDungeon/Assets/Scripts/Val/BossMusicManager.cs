@@ -31,6 +31,7 @@ public class BossMusicManager : MonoBehaviour
         if(bts.deadBoss && !started){
             started = true;
             scoreText.text = player.GetComponent<Player>().score.ToString();
+            scoreText.transform.localScale = new Vector3(1f, 1f, 1f);
             Destroy(bossSong);
             bossDeadSound.GetComponent<AudioSource>().Play();
             Destroy(bossDeadSound, 3f);
