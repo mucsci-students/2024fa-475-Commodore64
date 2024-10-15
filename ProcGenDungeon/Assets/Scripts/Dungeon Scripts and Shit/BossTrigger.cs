@@ -28,6 +28,6 @@ public class BossTrigger : MonoBehaviour
 
         player = GameObject.FindGameObjectsWithTag("Player");
         player[0].transform.position = new Vector3(0f, 0f, 0f);
-
+        player[0].GetComponent<Player>().invulne = true;
     }
 }
