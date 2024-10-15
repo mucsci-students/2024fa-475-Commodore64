@@ -31,6 +31,7 @@ public class PauseGame : MonoBehaviour
         player = GameObject.FindGameObjectsWithTag("Player");
         player[0].transform.position = new Vector3(0f, 0f, 0f);
 
+        player[0].GetComponent<Player>().score = 0;
         player[0].GetComponent<Player>().currentHealth = 100;
         player[0].GetComponent<Player>().currentEnergy = 100;
         player[0].GetComponent<Player>().isDead = false;
