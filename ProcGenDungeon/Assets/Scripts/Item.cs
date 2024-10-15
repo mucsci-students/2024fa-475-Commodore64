@@ -33,4 +33,4 @@ public class Item : MonoBehaviour
     }
 }
 
-public enum ItemType { NONE, SWORD, HAMMER, ARMOR, COLLECTABLE, CONSUMABLE }
+public enum ItemType { NONE, SWORD, HAMMER, ARMOR, COLLECTABLE, HEALTH, ENERGY, HEALTHENERGY }

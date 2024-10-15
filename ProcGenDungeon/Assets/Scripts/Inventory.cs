@@ -111,7 +111,13 @@ public class Inventory
                 case ItemType.COLLECTABLE:
                     slot.maxAllowed = 10;
                     break;
-                case ItemType.CONSUMABLE:
+                case ItemType.HEALTH:
+                    slot.maxAllowed = 10;
+                    break;
+                case ItemType.ENERGY:
+                    slot.maxAllowed = 10;
+                    break;
+                case ItemType.HEALTHENERGY:
                     slot.maxAllowed = 10;
                     break;
                 default:
@@ -239,7 +245,7 @@ public class Inventory
         Sprite healthEnergyIcon;
         healthEnergyIcon = healthEnergyPotions[0].GetComponent<ConsumableItem>().icon;
 
-        if (slots[index].type == ItemType.CONSUMABLE && player[0].GetComponent<Player>().currentHealth != player[0].GetComponent<Player>().maxHealth && slots[index].icon == healthIcon)
+        if (slots[index].type == ItemType.HEALTH && player[0].GetComponent<Player>().currentHealth != player[0].GetComponent<Player>().maxHealth && slots[index].icon == healthIcon)
         {
             if (healthPotions.Length > 0)
             {
@@ -253,7 +259,7 @@ public class Inventory
             Remove(index);
         }
 
-        if (slots[index].type == ItemType.CONSUMABLE && player[0].GetComponent<Player>().currentEnergy != player[0].GetComponent<Player>().maxEnergy && slots[index].icon == energyIcon)
+        if (slots[index].type == ItemType.ENERGY && player[0].GetComponent<Player>().currentEnergy != player[0].GetComponent<Player>().maxEnergy && slots[index].icon == energyIcon)
         {
             if (energyPotions.Length > 0)
             {
@@ -267,7 +273,7 @@ public class Inventory
             Remove(index);
         }
 
-        if (slots[index].type == ItemType.CONSUMABLE && player[0].GetComponent<Player>().currentHealth != player[0].GetComponent<Player>().maxHealth || player[0].GetComponent<Player>().currentEnergy != player[0].GetComponent<Player>().maxEnergy && slots[index].icon == healthEnergyIcon)
+        if (slots[index].type == ItemType.HEALTHENERGY && player[0].GetComponent<Player>().currentHealth != player[0].GetComponent<Player>().maxHealth || player[0].GetComponent<Player>().currentEnergy != player[0].GetComponent<Player>().maxEnergy && slots[index].icon == healthEnergyIcon)
         {
             if (healthEnergyPotions.Length > 0)
             {

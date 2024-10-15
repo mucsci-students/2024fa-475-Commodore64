@@ -1752,7 +1752,7 @@ GameObject:
   - component: {fileID: 85578241825133048}
   - component: {fileID: 8059808994956172706}
   m_Layer: 5
-  m_Name: Armor
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1864,7 +1864,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3401478722897103618}
         m_TargetAssemblyTypeName: InventoryUI, Assembly-CSharp
-        m_MethodName: UnequipArmor
+        m_MethodName: UnequipWeapon
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3124,7 +3124,7 @@ GameObject:
   - component: {fileID: 558749698996211358}
   - component: {fileID: 5413218116510762302}
   m_Layer: 5
-  m_Name: Weapon
+  m_Name: Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3236,7 +3236,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3401478722897103618}
         m_TargetAssemblyTypeName: InventoryUI, Assembly-CSharp
-        m_MethodName: UnequipWeapon
+        m_MethodName: UnequipArmor
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4544,8 +4544,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.9035, y: 0.69480133}
-  m_SizeDelta: {x: -21.4612, y: -14.9764}
+  m_AnchoredPosition: {x: -0.9034996, y: 1.5999985}
+  m_SizeDelta: {x: -21.4612, y: -25.4231}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8910894295591439334
 CanvasRenderer:
@@ -5254,8 +5254,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.2352982, y: 2.4}
-  m_SizeDelta: {x: -25.6296, y: -26.2316}
+  m_AnchoredPosition: {x: -1.2352982, y: 0.6052017}
+  m_SizeDelta: {x: -25.6296, y: -17.9793}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4658053365059205894
 CanvasRenderer:
