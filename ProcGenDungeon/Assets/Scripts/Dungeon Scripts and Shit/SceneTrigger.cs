@@ -13,13 +13,16 @@ public class SceneTrigger : MonoBehaviour
 
     public GameObject[] player;
 
-    void OnTriggerEnter2D (Collider2D col) {
-        if (col.CompareTag("Player")) {
-            StartCoroutine(LoadLevel(2));
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            StartCoroutine(LoadLevel(1));
         }
     }
 
-    IEnumerator LoadLevel (int levelIndex) {
+    IEnumerator LoadLevel(int levelIndex)
+    {
         transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
