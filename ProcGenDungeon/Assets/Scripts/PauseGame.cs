@@ -27,7 +27,7 @@ public class PauseGame : MonoBehaviour
     {
         Time.timeScale = 1;
         PauseMenuUI.SetActive(false);
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene("Restart Room");
         player = GameObject.FindGameObjectsWithTag("Player");
         player[0].transform.position = new Vector3(0f, 0f, 0f);
 
