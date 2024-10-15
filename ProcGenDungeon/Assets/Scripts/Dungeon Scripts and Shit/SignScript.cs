@@ -30,20 +30,14 @@ public class SignScript : MonoBehaviour
 
     void Update()
     {
-        /*if(playerInRange) {
-            if(dialogueBox.activeInHierarchy) {
-                dialogueBox.SetActive(false);
-            } else {
-                dialogueBox.SetActive(true);
-                dialogueText.text = dialogue;
-            }
-        }*/
-
-        timeUntilSignDisappears -= Time.deltaTime;
-        if (timeUntilSignDisappears <= 0)
+        if (playerInRange)
         {
-            dialogueBox.SetActive(false);
-            timeUntilSignDisappears = 3f;
+            timeUntilSignDisappears -= Time.deltaTime;
+            if (timeUntilSignDisappears <= 0)
+            {
+                dialogueBox.SetActive(false);
+                timeUntilSignDisappears = 3f;
+            }
         }
     }
 
@@ -63,6 +57,7 @@ public class SignScript : MonoBehaviour
         {
             playerInRange = false;
             dialogueBox.SetActive(false);
+            timeUntilSignDisappears = 3f;
         }
     }
 
