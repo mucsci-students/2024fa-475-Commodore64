@@ -135,5 +135,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: -303501585, guid: c3261e0310c280a45a379466e367331d, type: 3}
   type: 5
-  healthGain: 10
+  healthGain: 25
   energyGain: 0
