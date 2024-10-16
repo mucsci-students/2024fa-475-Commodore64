@@ -4,6 +4,7 @@ Group Project by Tommy Nguyen, Valentino Pirocchi, Francesco Spagnolo
 
 Controls:
 WASD - Move
+Left Click - Attack (in direction of mouse)
 Q - fire warp projectile(in direction of mouse) / teleport to it if already fired
 F - Open Inventory
 Esc - Pause Shortcut
