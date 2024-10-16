@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,8 @@ public class Inventory
         public int count; // number of items in the slot
         public int maxAllowed; // max items per slot
         public Sprite icon; // sprite image
+        public TextMeshProUGUI damage;
+        public TextMeshProUGUI armor;
         public bool isEquippedWeapon = false;
         public bool isEquippedArmor = false;
 
@@ -214,6 +217,7 @@ public class Inventory
             slots[index].isEquippedWeapon = true;
             slots[18].isEquippedWeapon = true;
             player[0].GetComponent<Player>().damage = damage; // apply damage
+            slots[18].damage.text = "Damage: " + damage + " Dmg"; // change visual
         }
 
         // if it is a hammer
@@ -237,6 +241,7 @@ public class Inventory
             slots[index].isEquippedWeapon = true;
             slots[18].isEquippedWeapon = true;
             player[0].GetComponent<Player>().damage = damage; // apply damage
+            slots[18].damage.text = "Damage: " + damage + " Dmg"; // change visual
         }
 
         // if it is armor
@@ -258,6 +263,7 @@ public class Inventory
             slots[index].isEquippedArmor = true;
             slots[19].isEquippedArmor = true;
             player[0].GetComponent<Player>().armor = armor; // apply armor
+            slots[19].armor.text = "Armor: " + armor + " Def";
         }
     }
 
@@ -270,6 +276,7 @@ public class Inventory
         slots[18].type = ItemType.NONE;
         slots[20].icon = null;
         slots[20].type = ItemType.NONE;
+        slots[18].damage.text = "Damage: 20 Dmg";
     }
     public void UnequipArmor()
     {
@@ -278,6 +285,7 @@ public class Inventory
         player[0].GetComponent<Player>().armor = 10;
         slots[19].icon = null;
         slots[19].type = ItemType.NONE;
+        slots[19].armor.text = "Armor: 10 Def";
     }
 
     public void UseConsumable(int index)

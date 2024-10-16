@@ -5,6 +5,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -35,11 +36,17 @@ public class Player : MonoBehaviour
   public HealthBar healthBar;
   public EnergyBar energyBar;
   public Inventory inventory;
+  public TextMeshProUGUI damageSlot;
+  public TextMeshProUGUI armorSlot;
 
   private void Awake()
   {
     // Initializes Inventory to 18 slots and 3 equipment slots
     inventory = new Inventory(21);
+    inventory.slots[18].damage = damageSlot;
+    inventory.slots[19].armor = armorSlot;
+    inventory.slots[18].damage.text = "Damage: 20 Dmg";
+    inventory.slots[19].armor.text = "Armor: 10 Def";
   }
 
   void Start()
