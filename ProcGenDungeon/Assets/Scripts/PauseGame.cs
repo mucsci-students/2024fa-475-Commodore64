@@ -47,6 +47,8 @@ public class PauseGame : MonoBehaviour
         player[0].GetComponent<Player>().inventory = new Inventory(21);
         player[0].GetComponent<Player>().healthBar.SetHealth(100);
         player[0].GetComponent<Player>().energyBar.SetEnergy(100);
+        player[0].GetComponent<Player>().damage = 20;
+        player[0].GetComponent<Player>().armor = 10;
     }
 
     public void Quit()

@@ -85,6 +85,32 @@ public class Inventory
     {
         foreach (InventorySlot slot in slots)
         {
+            switch (newItem.type)
+            {
+                case ItemType.SWORD:
+                    slot.maxAllowed = 1;
+                    break;
+                case ItemType.HAMMER:
+                    slot.maxAllowed = 1;
+                    break;
+                case ItemType.ARMOR:
+                    slot.maxAllowed = 1;
+                    break;
+                case ItemType.COLLECTABLE:
+                    slot.maxAllowed = 10;
+                    break;
+                case ItemType.HEALTH:
+                    slot.maxAllowed = 10;
+                    break;
+                case ItemType.ENERGY:
+                    slot.maxAllowed = 10;
+                    break;
+                case ItemType.HEALTHENERGY:
+                    slot.maxAllowed = 10;
+                    break;
+                default:
+                    break;
+            }
             // If something matches current inventory and the slot is not full of that item
             if (slot.type == newItem.type && slot.CanAddItem() && slot.icon == newItem.icon)
             {
