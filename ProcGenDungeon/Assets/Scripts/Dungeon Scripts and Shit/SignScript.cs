@@ -25,7 +25,7 @@ public class SignScript : MonoBehaviour
 
     void Awake()
     {
-        timeUntilSignDisappears = 3f;
+        timeUntilSignDisappears = 5f;
     }
 
     void Update()
