@@ -46,7 +46,8 @@ public class PauseGame : MonoBehaviour
         player[0].GetComponent<Animator>().Play("IdleAnim");
         for (int i = 0; i < 21; i++)
         {
-            player[0].GetComponent<Player>().inventory.Remove(i);
+            for (int j = 0; j < player[0].GetComponent<Player>().inventory.slots[i].maxAllowed; j++)
+                player[0].GetComponent<Player>().inventory.Remove(i);
         }
         player[0].GetComponent<Player>().healthBar.SetHealth(100);
         player[0].GetComponent<Player>().energyBar.SetEnergy(100);
