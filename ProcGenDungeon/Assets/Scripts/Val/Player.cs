@@ -147,7 +147,7 @@ public class Player : MonoBehaviour
   IEnumerator waiter()
   {
     cd = false;
-    yield return new WaitForSeconds(1.14f);
+    yield return new WaitForSeconds(0f);
     cd = true;
   }
   IEnumerator deathTime()
@@ -160,7 +160,7 @@ public class Player : MonoBehaviour
   IEnumerator waiterAnimate()
   {
     myAnimator.SetBool("Atk", true);
-    yield return new WaitForSeconds(1.02f);
+    yield return new WaitForSeconds(0f);
     myAnimator.SetBool("Atk", false);
   }
   IEnumerator waiterAtk()
@@ -190,7 +190,7 @@ public class Player : MonoBehaviour
         myAnimator.SetBool("mosDown", true);
       }
     }
-    yield return new WaitForSeconds(0.5f);
+    yield return new WaitForSeconds(0f);
     Instantiate(attackHitbox, transform.position, Quaternion.identity);
     myAnimator.SetBool("mosUp", false);
     myAnimator.SetBool("mosDown", false);
